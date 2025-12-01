@@ -10,9 +10,22 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Console.WriteLine("Hello");
+            string choix;
+            do
+            {
+                Console.WriteLine("Prenom : ");
+                string prenom = Console.ReadLine();
+                Console.WriteLine("Nom : ");
+                string nom = Console.ReadLine();
+                Console.WriteLine("Email : ");
+                string email = Console.ReadLine();
 
+                Console.WriteLine("Bonjour {0} {1}, votre email est {2}", prenom, nom, email);
+
+                Console.WriteLine("voulez-vous recommencer? (o/n) : ");
+                choix = Console.ReadLine();
+            } while (choix == "o");
         }
     }
 }
+
