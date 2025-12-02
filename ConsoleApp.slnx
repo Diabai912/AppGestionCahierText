@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="Calculatrice/Calculatrice.csproj" Id="59a33203-ee77-48d3-abae-116c6d2ea033" />
   <Project Path="ConsoleApp1/ConsoleApp1.csproj" />
+  <Project Path="ConsoleApp2/ConsoleApp2.csproj" />
 </Solution>
