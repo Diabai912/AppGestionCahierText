@@ -8,3 +8,8 @@ do
 {
     Console.WriteLine("Donner un nombre");
     nbre = int.Parse(Console.ReadLine());
+    // Partie 2 : Affichage de la table
+    for (int i = 1; i <= 10; i++)
+    {
+        Console.WriteLine($"{nbre} * {i} = {nbre * i}");
+    }
