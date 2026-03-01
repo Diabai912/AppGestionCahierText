@@ -1,0 +1,31 @@
+# Dossiers de build
+bin/
+obj/
+
+# Fichiers de configuration utilisateur
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Fichiers temporaires
+*.tmp
+*.log
+*.bak
+*.swp
+
+# Packages NuGet
+packages/
+*.nupkg
+project.lock.json
+
+# Fichiers générés automatiquement
+*.dll
+*.exe
+*.pdb
+
+# Configurations locales
+.vscode/
+*.db
+.vs/
+
