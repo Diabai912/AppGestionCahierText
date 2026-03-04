@@ -114,13 +114,33 @@ namespace AppGestionCahierText.views.parametre
 
         private void btnAjouter_Click(object sender, EventArgs e)
         {
+            int idClasse = (int)cbbClasse.SelectedValue;
+            int idResponsable = (int)cbbResponsable.SelectedValue;
+
+            // Vérifier si la classe a déjà un responsable
+            bool classeDejaResponsable = db.CahierTextes.Any(c => c.IdClasse == idClasse && c.IdResponsable != null);
+            if (classeDejaResponsable)
+            {
+                MessageBox.Show("Impossible : cette classe a déjà un responsable !");
+                return;
+            }
+
+            // Vérifier si le responsable est déjà lié à une autre classe
+            bool responsableDejaAffecte = db.CahierTextes.Any(c => c.IdResponsable == idResponsable);
+            if (responsableDejaAffecte)
+            {
+                MessageBox.Show("Impossible : ce responsable est déjà affecté à une autre classe !");
+                return;
+            }
+
+            // Si tout est bon, créer le cahier de texte
             var cahier = new AppGestionCahierText.views.Models.CahierTexte
             {
-                IdClasse = (int)cbbClasse.SelectedValue,   // ✅ correspond au modèle
+                IdClasse = idClasse,
                 DescriptionCahierTexte = txtDescription.Text,
                 DateCahierTexte = dateTimePicker.Value,
                 IdAnnee = (int)cbbAnneeAcademique.SelectedValue,
-                IdResponsable = (int)cbbResponsable.SelectedValue
+                IdResponsable = idResponsable
             };
 
             db.CahierTextes.Add(cahier);
@@ -129,6 +149,7 @@ namespace AppGestionCahierText.views.parametre
             ViderChamps();
             MessageBox.Show("Cahier de texte ajouté avec succès !");
         }
+
 
         private void ViderChamps()
         {
@@ -178,11 +199,31 @@ namespace AppGestionCahierText.views.parametre
 
             if (cahier != null)
             {
-                cahier.IdClasse = (int)cbbClasse.SelectedValue;
+                int idClasse = (int)cbbClasse.SelectedValue;
+                int idResponsable = (int)cbbResponsable.SelectedValue;
+
+                // Vérifier si la classe a déjà un responsable (autre que celui en cours)
+                bool classeDejaResponsable = db.CahierTextes.Any(c => c.IdClasse == idClasse && c.IdResponsable != null && c.IdCahierTexte != id);
+                if (classeDejaResponsable)
+                {
+                    MessageBox.Show("Impossible : cette classe a déjà un responsable !");
+                    return;
+                }
+
+                // Vérifier si le responsable est déjà lié à une autre classe (autre que celle en cours)
+                bool responsableDejaAffecte = db.CahierTextes.Any(c => c.IdResponsable == idResponsable && c.IdCahierTexte != id);
+                if (responsableDejaAffecte)
+                {
+                    MessageBox.Show("Impossible : ce responsable est déjà affecté à une autre classe !");
+                    return;
+                }
+
+                // Mise à jour
+                cahier.IdClasse = idClasse;
                 cahier.DescriptionCahierTexte = txtDescription.Text;
                 cahier.DateCahierTexte = dateTimePicker.Value;
                 cahier.IdAnnee = (int)cbbAnneeAcademique.SelectedValue;
-                cahier.IdResponsable = (int)cbbResponsable.SelectedValue;
+                cahier.IdResponsable = idResponsable;
 
                 db.SaveChanges();
                 AfficherCahierTexte();
@@ -190,6 +231,7 @@ namespace AppGestionCahierText.views.parametre
                 MessageBox.Show("Cahier de texte modifié avec succès !");
             }
         }
+
 
 
         private void btnSupprimer_Click(object sender, EventArgs e)

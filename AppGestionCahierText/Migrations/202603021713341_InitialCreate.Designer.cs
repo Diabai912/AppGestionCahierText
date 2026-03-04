@@ -7,13 +7,13 @@ namespace AppGestionCahierText.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class UpdateSyllabusConstraints : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateSyllabusConstraints));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "202602211224592_UpdateSyllabusConstraints"; }
+            get { return "202603021713341_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

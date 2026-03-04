@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -32,13 +33,14 @@ namespace AppGestionCahierText.views.parametre
             {
                 LibelleMatiere = txtLibelleMatiere.Text,
                 VolumeHoraireMatiere = volume,
-                Niveau = txtNiveau.Text
+                Niveau = txtNiveau.Text,
+                IdProfesseur = (int)cbbProfesseur.SelectedValue // lien avec Utilisateur
             };
 
             db.Matieres.Add(matiere);
             db.SaveChanges();
             AfficherMatiere();
-            ViderChamps(); // <-- vide les champs
+            ViderChamps();
             MessageBox.Show("Matière ajoutée avec succès !");
         }
 
@@ -46,22 +48,42 @@ namespace AppGestionCahierText.views.parametre
 
 
 
-        private void AfficherMatiere() { 
-            DgMatiere.DataSource = db.Matieres.Select(m => new 
-            { 
-                m.IdMatiere, 
-                m.LibelleMatiere, 
-                m.VolumeHoraireMatiere, 
-                m.Niveau 
-            })
-                .ToList(); 
+        private void AfficherMatiere()
+        {
+            var matieres = db.Matieres
+                .Include(m => m.Professeur) 
+                .ToList();
+
+            DgMatiere.DataSource = matieres
+                .Select(m => new
+                {
+                    m.IdMatiere,
+                    m.LibelleMatiere,
+                    m.VolumeHoraireMatiere,
+                    m.Niveau,
+                    m.IdProfesseur,
+                    Professeur = m.Professeur != null ? m.Professeur.NomUtilisateur : ""
+                })
+                .ToList();
+
+            DgMatiere.Columns["IdProfesseur"].Visible = false;
         }
+
+
+
 
         private void frmMatiere_Load(object sender, EventArgs e)
         {
             AfficherMatiere();
 
+            // Charger les professeurs depuis Utilisateurs
+            cbbProfesseur.DataSource = db.Utilisateurs
+                .Where(u => u.Role == "Professeur")
+                .ToList();
+            cbbProfesseur.DisplayMember = "NomUtilisateur";   // ce qui s’affiche
+            cbbProfesseur.ValueMember = "IdUtilisateur";      // valeur réelle
         }
+
 
         private void btnModifier_Click(object sender, EventArgs e)
         {
@@ -87,6 +109,8 @@ namespace AppGestionCahierText.views.parametre
                 matiere.VolumeHoraireMatiere = volume;
                 matiere.Niveau = txtNiveau.Text;
 
+                matiere.IdProfesseur = (int)cbbProfesseur.SelectedValue;
+
                 db.SaveChanges();
                 AfficherMatiere();
                 ViderChamps(); // <-- vide les champs après modification
@@ -101,7 +125,12 @@ namespace AppGestionCahierText.views.parametre
             txtLibelleMatiere.Clear();
             txtVolumeHoraire.Clear();
             txtNiveau.Clear();
+
+            
+            if (cbbProfesseur.Items.Count > 0)
+                cbbProfesseur.SelectedIndex = -1;
         }
+
 
 
         private void btnSupprimer_Click(object sender, EventArgs e)
@@ -140,8 +169,13 @@ namespace AppGestionCahierText.views.parametre
                 txtLibelleMatiere.Text = DgMatiere.CurrentRow.Cells["LibelleMatiere"].Value.ToString();
                 txtVolumeHoraire.Text = DgMatiere.CurrentRow.Cells["VolumeHoraireMatiere"].Value.ToString();
                 txtNiveau.Text = DgMatiere.CurrentRow.Cells["Niveau"].Value.ToString();
+
+                // Sélectionner le professeur lié
+                int idProf = (int)DgMatiere.CurrentRow.Cells["IdProfesseur"].Value;
+                cbbProfesseur.SelectedValue = idProf;
             }
         }
+
 
 
 
@@ -220,6 +254,12 @@ namespace AppGestionCahierText.views.parametre
         }
 
         private void DgMatiere_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+       
+        private void cbbNiveauSyllabus_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

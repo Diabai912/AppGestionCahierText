@@ -41,6 +41,8 @@
             this.btnSupprimer = new System.Windows.Forms.Button();
             this.btnRechercher = new System.Windows.Forms.Button();
             this.txtRecherche = new System.Windows.Forms.TextBox();
+            this.cbbProfesseur = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DgMatiere)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,7 +92,7 @@
             this.btnAjouter.BackColor = System.Drawing.Color.Purple;
             this.btnAjouter.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAjouter.ForeColor = System.Drawing.Color.White;
-            this.btnAjouter.Location = new System.Drawing.Point(247, 338);
+            this.btnAjouter.Location = new System.Drawing.Point(247, 463);
             this.btnAjouter.Name = "btnAjouter";
             this.btnAjouter.Size = new System.Drawing.Size(160, 44);
             this.btnAjouter.TabIndex = 5;
@@ -103,7 +105,7 @@
             this.btnModifier.BackColor = System.Drawing.Color.Purple;
             this.btnModifier.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModifier.ForeColor = System.Drawing.Color.White;
-            this.btnModifier.Location = new System.Drawing.Point(247, 397);
+            this.btnModifier.Location = new System.Drawing.Point(247, 513);
             this.btnModifier.Name = "btnModifier";
             this.btnModifier.Size = new System.Drawing.Size(160, 44);
             this.btnModifier.TabIndex = 6;
@@ -158,7 +160,7 @@
             this.btnSupprimer.BackColor = System.Drawing.Color.Purple;
             this.btnSupprimer.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSupprimer.ForeColor = System.Drawing.Color.White;
-            this.btnSupprimer.Location = new System.Drawing.Point(244, 459);
+            this.btnSupprimer.Location = new System.Drawing.Point(247, 563);
             this.btnSupprimer.Name = "btnSupprimer";
             this.btnSupprimer.Size = new System.Drawing.Size(160, 44);
             this.btnSupprimer.TabIndex = 7;
@@ -187,12 +189,34 @@
             this.txtRecherche.TabIndex = 8;
             this.txtRecherche.TextChanged += new System.EventHandler(this.txtRecherche_TextChanged);
             // 
+            // cbbProfesseur
+            // 
+            this.cbbProfesseur.BackColor = System.Drawing.Color.Purple;
+            this.cbbProfesseur.ForeColor = System.Drawing.SystemColors.Window;
+            this.cbbProfesseur.FormattingEnabled = true;
+            this.cbbProfesseur.Location = new System.Drawing.Point(19, 363);
+            this.cbbProfesseur.Name = "cbbProfesseur";
+            this.cbbProfesseur.Size = new System.Drawing.Size(385, 28);
+            this.cbbProfesseur.TabIndex = 17;
+            this.cbbProfesseur.SelectedIndexChanged += new System.EventHandler(this.cbbNiveauSyllabus_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(22, 340);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(86, 20);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Professeur";
+            // 
             // frmMatiere
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1174, 730);
             this.ControlBox = false;
+            this.Controls.Add(this.cbbProfesseur);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnRechercher);
             this.Controls.Add(this.txtRecherche);
             this.Controls.Add(this.btnSupprimer);
@@ -206,6 +230,7 @@
             this.Controls.Add(this.txtLibelleMatiere);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DgMatiere);
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Name = "frmMatiere";
             this.Text = "Matiere";
             this.Load += new System.EventHandler(this.frmMatiere_Load);
@@ -230,5 +255,7 @@
         private System.Windows.Forms.Button btnSupprimer;
         private System.Windows.Forms.Button btnRechercher;
         private System.Windows.Forms.TextBox txtRecherche;
+        private System.Windows.Forms.ComboBox cbbProfesseur;
+        private System.Windows.Forms.Label label4;
     }
 }

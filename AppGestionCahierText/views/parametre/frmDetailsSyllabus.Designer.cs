@@ -205,6 +205,7 @@
             this.Controls.Add(this.btnSupprimer);
             this.Controls.Add(this.btnModifier);
             this.Controls.Add(this.btnAjouter);
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Name = "frmDetailsSyllabus";
             this.Text = "Details Syllabus";
             this.Load += new System.EventHandler(this.frmDetailsSyllabus_Load);

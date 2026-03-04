@@ -14,7 +14,7 @@ namespace AppGestionCahierText.views.Models
         public int IdCahierTexte { get; set; }
 
         [Required]
-        public int IdClasse { get; set; }   // ✅ lien vers Classe
+        public int IdClasse { get; set; }   
         [ForeignKey("IdClasse")]
         public virtual Classe Classe { get; set; }
 
@@ -23,12 +23,12 @@ namespace AppGestionCahierText.views.Models
         public DateTime DateCahierTexte { get; set; } = DateTime.Now;
 
         [Required]
-        public int IdAnnee { get; set; }   // ✅ lien vers Année académique
+        public int IdAnnee { get; set; }   
         [ForeignKey("IdAnnee")]
         public virtual AnneeAcademique AnneeAcademique { get; set; }
 
         [Required]
-        public int IdResponsable { get; set; }   // ✅ lien vers Utilisateur
+        public int IdResponsable { get; set; }  
         [ForeignKey("IdResponsable")]
         public virtual Utilisateur Responsable { get; set; }
     }

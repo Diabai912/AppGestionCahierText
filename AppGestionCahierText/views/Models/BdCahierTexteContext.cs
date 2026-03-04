@@ -1,19 +1,16 @@
 ﻿using MySql.Data.EntityFramework;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AppGestionCahierText.views.Models
 {
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
-    public class BdCahierTexteContext:DbContext
+    public class BdCahierTexteContext : DbContext
     {
         public BdCahierTexteContext() : base("connCahiertexte")
         {
         }
+
         public DbSet<Matiere> Matieres { get; set; }
         public DbSet<AnneeAcademique> AnneeAcademiques { get; set; }
         public DbSet<Classe> Classes { get; set; }
@@ -24,7 +21,8 @@ namespace AppGestionCahierText.views.Models
         public DbSet<CahierTexte> CahierTextes { get; set; }
         public DbSet<DetailsSyllabus> DetailsSyllabuses { get; set; }
 
-
+        
 
     }
 }
+

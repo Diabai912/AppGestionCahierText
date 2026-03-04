@@ -121,17 +121,14 @@
     <Compile Include="frmMDI.Designer.cs">
       <DependentUpon>frmMDI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202602160919290_MiseAJourModele.cs" />
-    <Compile Include="Migrations\202602160919290_MiseAJourModele.Designer.cs">
-      <DependentUpon>202602160919290_MiseAJourModele.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202602211224592_UpdateSyllabusConstraints.cs" />
-    <Compile Include="Migrations\202602211224592_UpdateSyllabusConstraints.Designer.cs">
-      <DependentUpon>202602211224592_UpdateSyllabusConstraints.cs</DependentUpon>
+    <Compile Include="Migrations\202603021713341_InitialCreate.cs" />
+    <Compile Include="Migrations\202603021713341_InitialCreate.Designer.cs">
+      <DependentUpon>202603021713341_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shared\Crypto.cs" />
     <Compile Include="views\Models\AnneeAcademique.cs" />
     <Compile Include="views\Models\BdCahierTexteContext.cs" />
     <Compile Include="views\Models\CahierTexte.cs" />
@@ -191,11 +188,8 @@
     <EmbeddedResource Include="frmMDI.resx">
       <DependentUpon>frmMDI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202602160919290_MiseAJourModele.resx">
-      <DependentUpon>202602160919290_MiseAJourModele.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202602211224592_UpdateSyllabusConstraints.resx">
-      <DependentUpon>202602211224592_UpdateSyllabusConstraints.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202603021713341_InitialCreate.resx">
+      <DependentUpon>202603021713341_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

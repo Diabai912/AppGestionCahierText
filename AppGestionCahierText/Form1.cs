@@ -1,4 +1,5 @@
-﻿using AppGestionCahierText.views.Models;
+﻿using AppGestionCahierText.Shared;
+using AppGestionCahierText.views.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -56,26 +57,35 @@ namespace AppGestionCahierText
             using (var db = new BdCahierTexteContext())
             {
                 string identifiant = txtIdentifiant.Text.Trim();
-                string motDePasse = txtMotDePasse.Text.Trim();
+                string motDePasseSaisi = txtMotDePasse.Text.Trim();
 
-                // Vérification dans la table AUtilisateurs
-                var user = db.Utilisateurs
-                             .FirstOrDefault(u => u.Identifiant == identifiant
-                                               && u.MotDePasse == motDePasse);
+                // Récupérer l'utilisateur par identifiant
+                var user = db.Utilisateurs.FirstOrDefault(u => u.Identifiant == identifiant);
 
                 if (user != null)
                 {
-                    // Connexion réussie → ouvrir le menu principal
-                    frmMDI mdi = new frmMDI();
-                    mdi.Show();
-                    this.Hide();
+                    // Recalculer le hash avec le mot de passe saisi + le sel stocké
+                    string hashTest = Crypto.HashWithSalt(motDePasseSaisi, user.Salt);
+
+                    if (hashTest == user.PasswordHash)
+                    {
+                        // Connexion réussie → ouvrir le menu principal
+                        frmMDI mdi = new frmMDI();
+                        mdi.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Mot de passe incorrect !");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Identifiant ou mot de passe incorrect !");
+                    MessageBox.Show("Utilisateur introuvable !");
                 }
             }
         }
+
 
 
     }

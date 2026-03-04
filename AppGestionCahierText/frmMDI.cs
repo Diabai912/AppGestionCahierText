@@ -107,6 +107,7 @@ namespace AppGestionCahierText
         private void frmMDI_Load(object sender, EventArgs e)
         {
             // Utiliser WindowState pour maximiser proprement la MDI parent
+
             this.WindowState = FormWindowState.Maximized;
             this.Location = new Point(0, 0);
         }

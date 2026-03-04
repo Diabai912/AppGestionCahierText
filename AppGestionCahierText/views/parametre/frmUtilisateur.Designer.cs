@@ -297,6 +297,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1193, 714);
+            this.ControlBox = false;
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtMotDePasse);
             this.Controls.Add(this.cbbRole);
@@ -320,6 +321,9 @@
             this.Controls.Add(this.btnSupprimer);
             this.Controls.Add(this.btnModifier);
             this.Controls.Add(this.btnAjouter);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmUtilisateur";
             this.Text = "Utilisateur";
             this.Load += new System.EventHandler(this.frmUtilisateur_Load);

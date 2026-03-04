@@ -30,11 +30,14 @@ namespace AppGestionCahierText.views.Models
         [Required, MaxLength(20)]
         public string Identifiant { get; set; }
 
-        [Required, MaxLength(300)]
-        public string MotDePasse { get; set; }
+        [Required, MaxLength(300)] 
+        public string PasswordHash { get; set; }
+
+        [Required, MaxLength(50)] 
+        public string Salt { get; set; }
 
         [Required, MaxLength(50)]
-        public string Role { get; set; }   // ✅ Ajouté pour distinguer Responsable, Professeur, etc.
+        public string Role { get; set; }   
     }
 
 }

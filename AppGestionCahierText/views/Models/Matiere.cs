@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AppGestionCahierText.views.Models
 {
+    [Table("matieres")]
     public class Matiere
     {
         [Key]
@@ -21,6 +23,11 @@ namespace AppGestionCahierText.views.Models
         [Required, MaxLength(80)]
         //chaque fois c string il faut mettre  MaxLength
         public string Niveau { get; set; }
+
+
+        [ForeignKey("Professeur")]
+        public int IdProfesseur { get; set; }
+        public Utilisateur Professeur { get; set; }
     }
 
 }

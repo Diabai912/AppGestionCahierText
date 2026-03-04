@@ -187,6 +187,7 @@
             this.Controls.Add(this.btnModifier);
             this.Controls.Add(this.btnAjouter);
             this.Font = new System.Drawing.Font("Segoe UI Variable Text", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmClasse";
             this.Text = "Classe";

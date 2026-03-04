@@ -39,7 +39,6 @@
             this.cahierDeTexteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.utilisateurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.syllabusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,14 +67,14 @@
             // seDeconnecterToolStripMenuItem
             // 
             this.seDeconnecterToolStripMenuItem.Name = "seDeconnecterToolStripMenuItem";
-            this.seDeconnecterToolStripMenuItem.Size = new System.Drawing.Size(235, 34);
+            this.seDeconnecterToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.seDeconnecterToolStripMenuItem.Text = "&Se deconnecter";
             this.seDeconnecterToolStripMenuItem.Click += new System.EventHandler(this.seDeconnecterToolStripMenuItem_Click);
             // 
             // quitterToolStripMenuItem
             // 
             this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(235, 34);
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.quitterToolStripMenuItem.Text = "&Quitter";
             this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
             // 
@@ -95,56 +94,44 @@
             // matiereToolStripMenuItem
             // 
             this.matiereToolStripMenuItem.Name = "matiereToolStripMenuItem";
-            this.matiereToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.matiereToolStripMenuItem.Size = new System.Drawing.Size(265, 34);
             this.matiereToolStripMenuItem.Text = "&Matiere";
             this.matiereToolStripMenuItem.Click += new System.EventHandler(this.matiereToolStripMenuItem_Click);
             // 
             // classeToolStripMenuItem
             // 
             this.classeToolStripMenuItem.Name = "classeToolStripMenuItem";
-            this.classeToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.classeToolStripMenuItem.Size = new System.Drawing.Size(265, 34);
             this.classeToolStripMenuItem.Text = "&Classe";
             this.classeToolStripMenuItem.Click += new System.EventHandler(this.classeToolStripMenuItem_Click);
             // 
             // anneeToolStripMenuItem
             // 
             this.anneeToolStripMenuItem.Name = "anneeToolStripMenuItem";
-            this.anneeToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.anneeToolStripMenuItem.Size = new System.Drawing.Size(265, 34);
             this.anneeToolStripMenuItem.Text = "&Annee academique";
             this.anneeToolStripMenuItem.Click += new System.EventHandler(this.anneeToolStripMenuItem_Click);
             // 
             // cahierDeTexteToolStripMenuItem
             // 
             this.cahierDeTexteToolStripMenuItem.Name = "cahierDeTexteToolStripMenuItem";
-            this.cahierDeTexteToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.cahierDeTexteToolStripMenuItem.Size = new System.Drawing.Size(265, 34);
             this.cahierDeTexteToolStripMenuItem.Text = "Cahier de Texte";
             this.cahierDeTexteToolStripMenuItem.Click += new System.EventHandler(this.cahierTexteToolStripMenuItem_Click);
             // 
             // utilisateurToolStripMenuItem
             // 
             this.utilisateurToolStripMenuItem.Name = "utilisateurToolStripMenuItem";
-            this.utilisateurToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.utilisateurToolStripMenuItem.Size = new System.Drawing.Size(265, 34);
             this.utilisateurToolStripMenuItem.Text = "Utilisateur";
             this.utilisateurToolStripMenuItem.Click += new System.EventHandler(this.utilisateurToolStripMenuItem_Click);
             // 
             // syllabusToolStripMenuItem
             // 
             this.syllabusToolStripMenuItem.Name = "syllabusToolStripMenuItem";
-            this.syllabusToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.syllabusToolStripMenuItem.Size = new System.Drawing.Size(265, 34);
             this.syllabusToolStripMenuItem.Text = "Syllabus";
             this.syllabusToolStripMenuItem.Click += new System.EventHandler(this.syllabusToolStripMenuItem_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.DarkGray;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(31, 217);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(730, 32);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Bienvenue dans l’application de gestion académique";
             // 
             // frmMDI
             // 
@@ -153,7 +140,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -180,6 +166,5 @@
         private System.Windows.Forms.ToolStripMenuItem cahierDeTexteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem utilisateurToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem syllabusToolStripMenuItem;
-        private System.Windows.Forms.Label label1;
     }
 }

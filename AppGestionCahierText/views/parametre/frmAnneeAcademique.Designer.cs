@@ -176,6 +176,7 @@
             this.Controls.Add(this.txtLibelle);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DgAnneeAcademique);
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Name = "frmAnneeAcademique";
             this.Text = "Annee Academique";
             this.Load += new System.EventHandler(this.frmAnneeAcademique_Load);
