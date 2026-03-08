@@ -1,4 +1,4 @@
-﻿using AppGestionCahierText.views.Models;
+using AppGestionCahierText.views.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +15,7 @@ namespace AppGestionCahierText.views.parametre
     {
         BdCahierTexteContext db = new BdCahierTexteContext();
         int idDetails = 0;
+        int idSyllabusFiltre = 0;
         public frmDetailsSyllabus()
         {
             InitializeComponent();
@@ -33,16 +34,39 @@ namespace AppGestionCahierText.views.parametre
 
         private void frmDetailsSyllabus_Load(object sender, EventArgs e)
         {
-            // Charger les syllabus disponibles
-            cbbSyllabus.DataSource = db.Syllabuses.ToList(); 
+            // Si un ID de syllabus est déjà défini, charger seulement ce syllabus
+            if (idSyllabusFiltre > 0)
+            {
+                cbbSyllabus.DataSource = db.Syllabuses.Where(s => s.IdSyllabus == idSyllabusFiltre).ToList(); 
+            }
+            else
+            {
+                // Sinon charger tous les syllabus disponibles
+                cbbSyllabus.DataSource = db.Syllabuses.ToList(); 
+            }
+            
             cbbSyllabus.DisplayMember = "LibelleSyllabus";
             cbbSyllabus.ValueMember = "IdSyllabus"; 
+            
+            // Si un ID de syllabus est déjà défini, le sélectionner
+            if (idSyllabusFiltre > 0)
+            {
+                cbbSyllabus.SelectedValue = idSyllabusFiltre;
+            }
+            
             AfficherDetails();
         }
 
         private void AfficherDetails() 
         { 
-            DgDetailsSyllabus.DataSource = db.DetailsSyllabuses
+            var query = db.DetailsSyllabuses.AsQueryable();
+            
+            if (idSyllabusFiltre > 0)
+            {
+                query = query.Where(d => d.IdSyllabus == idSyllabusFiltre);
+            }
+            
+            DgDetailsSyllabus.DataSource = query
                 .Select(d => new { 
                     d.IdDetailsSyllabus, 
                     d.SeanceSyllabus, 
@@ -103,6 +127,19 @@ namespace AppGestionCahierText.views.parametre
             txtContenu.Clear(); 
             cbbSyllabus.SelectedIndex = -1; 
             idDetails = 0; 
+        }
+
+        public void SetSyllabusId(int id)
+        {
+            idSyllabusFiltre = id;
+            
+                // Si la combobox est déjà initialisée, sélectionner le syllabus
+            if (cbbSyllabus.Items.Count > 0)
+            {
+                cbbSyllabus.SelectedValue = id;
+                // Rafraîchir l'affichage avec le filtre
+                AfficherDetails();
+            }
         }
     }
     

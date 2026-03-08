@@ -1,4 +1,4 @@
-﻿using AppGestionCahierText.views.Models;
+using AppGestionCahierText.views.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -68,7 +68,8 @@ namespace AppGestionCahierText.views.parametre
                     c.DescriptionCahierTexte,
                     c.DateCahierTexte,
                     Annee = c.AnneeAcademique.LibelleAnneeAcademique,
-                    Responsable = c.Responsable.NomUtilisateur
+                    Responsable = c.Responsable.NomUtilisateur,
+                    VoirDetails = "Voir détails"
                 })
                 .ToList();
 
@@ -248,6 +249,18 @@ namespace AppGestionCahierText.views.parametre
                 AfficherCahierTexte();
                 ViderChamps();
                 MessageBox.Show("Cahier de texte supprimé avec succès !");
+            }
+        }
+
+        private void DgCahierTexte_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && DgCahierTexte.Columns[e.ColumnIndex].Name == "VoirDetails")
+            {
+                int idCahierTexte = Convert.ToInt32(DgCahierTexte.Rows[e.RowIndex].Cells["IdCahierTexte"].Value);
+                
+                frmDetailsCahierTexte frmDetails = new frmDetailsCahierTexte();
+                frmDetails.SetCahierTexteId(idCahierTexte);
+                frmDetails.ShowDialog();
             }
         }
 

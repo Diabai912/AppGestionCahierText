@@ -19,6 +19,7 @@ namespace AppGestionCahierText.views.Models
         public DbSet<ResponsableClasse> ResponsableClasses { get; set; }
         public DbSet<Syllabus> Syllabuses { get; set; }
         public DbSet<CahierTexte> CahierTextes { get; set; }
+        public DbSet<DetailsCahierTexte> DetailsCahierTextes { get; set;}
         public DbSet<DetailsSyllabus> DetailsSyllabuses { get; set; }
 
         
