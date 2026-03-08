@@ -13,9 +13,12 @@ namespace AppGestionCahierText
 {
     public partial class frmMDI : Form
     {
-        public frmMDI()
+        private string _role;
+
+        public frmMDI(string role)
         {
             InitializeComponent();
+            _role = role;
         }
 
         private void fermer()
@@ -33,7 +36,7 @@ namespace AppGestionCahierText
         }
 
 
-        private void matiereToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuMatiere_Click(object sender, EventArgs e)
         {
             fermer();
             frmMatiere f = new frmMatiere();
@@ -42,7 +45,7 @@ namespace AppGestionCahierText
             f.WindowState = FormWindowState.Maximized;
         }
 
-        private void classeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuClasse_Click(object sender, EventArgs e)
         {
             fermer();
             frmClasse f = new frmClasse();
@@ -51,7 +54,7 @@ namespace AppGestionCahierText
             f.WindowState = FormWindowState.Maximized;
         }
 
-        private void anneeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuAnneeAcademique_Click(object sender, EventArgs e)
         { // Nous permet de fermer tous ce qui a été ouvert
             fermer();
             frmAnneeAcademique f = new frmAnneeAcademique();
@@ -60,7 +63,7 @@ namespace AppGestionCahierText
             f.WindowState = FormWindowState.Maximized;
         }
 
-        private void cahierTexteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuCahierTexte_Click(object sender, EventArgs e)
         {
             fermer(); // ferme les autres formulaires ouverts
             frmCahierTexte f = new frmCahierTexte();
@@ -69,7 +72,7 @@ namespace AppGestionCahierText
             f.WindowState = FormWindowState.Maximized;
         }
 
-        private void utilisateurToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuUtilisateur_Click(object sender, EventArgs e)
         {
             fermer();
             frmUtilisateur f = new frmUtilisateur();
@@ -78,7 +81,7 @@ namespace AppGestionCahierText
             f.WindowState = FormWindowState.Maximized;
         }
 
-        private void syllabusToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuSyllabus_Click(object sender, EventArgs e)
         {
             fermer();
             frmSyllabus f = new frmSyllabus();
@@ -106,10 +109,48 @@ namespace AppGestionCahierText
         // lorsque l'application se lance, prend tout l'écran
         private void frmMDI_Load(object sender, EventArgs e)
         {
-            // Utiliser WindowState pour maximiser proprement la MDI parent
-
             this.WindowState = FormWindowState.Maximized;
             this.Location = new Point(0, 0);
+
+           
+
+            if (_role == "Admin")
+            {
+                // Admin voit tout
+                menuMatiere.Visible = true;
+                menuClasse.Visible = true;
+                MenuAnneeAcademique.Visible = true;
+                menuCahierTexte.Visible = true;
+                MenuUtilisateur.Visible = true;
+                menuSyllabus.Visible = true;
+                menuDetailsSyllabus.Visible = true;
+            }
+            else if (_role == "Responsable")
+            {
+                // Responsable voit CahierTexte + DetailsSyllabus
+                menuCahierTexte.Visible = true;
+                menuDetailsSyllabus.Visible = true;
+            }
+            else if (_role == "Professeur")
+            {
+                // Professeur voit Matiere + Syllabus + DetailsSyllabus
+                menuMatiere.Visible = true;
+                menuSyllabus.Visible = true;
+                menuDetailsSyllabus.Visible = true;
+            }
         }
+
+
+
+
+        private void menuDetailsSyllabus_Click(object sender, EventArgs e)
+        {
+           
+            frmDetailsSyllabus frm = new frmDetailsSyllabus();
+            frm.MdiParent = this; // pour qu’il s’ouvre dans le MDI
+            frm.Show();
+       
+
     }
+}
 }

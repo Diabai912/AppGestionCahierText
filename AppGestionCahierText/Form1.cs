@@ -1,5 +1,6 @@
 ﻿using AppGestionCahierText.Shared;
 using AppGestionCahierText.views.Models;
+using AppGestionCahierText.views.parametre;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -69,8 +70,8 @@ namespace AppGestionCahierText
 
                     if (hashTest == user.PasswordHash)
                     {
-                        // Connexion réussie → ouvrir le menu principal
-                        frmMDI mdi = new frmMDI();
+                        // Connexion réussie → ouvrir frmMDI avec le rôle
+                        frmMDI mdi = new frmMDI(user.Role); // on passe le rôle au constructeur
                         mdi.Show();
                         this.Hide();
                     }
@@ -78,6 +79,8 @@ namespace AppGestionCahierText
                     {
                         MessageBox.Show("Mot de passe incorrect !");
                     }
+
+
                 }
                 else
                 {
