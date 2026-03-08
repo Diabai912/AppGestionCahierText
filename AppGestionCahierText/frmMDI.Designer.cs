@@ -28,19 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.menuMatiere = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSyllabus = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.actionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seDeconnecterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parametreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.matiereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.classeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.anneeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cahierDeTexteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.utilisateurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.syllabusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuClasse = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuAnneeAcademique = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuCahierTexte = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuUtilisateur = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuDetailsSyllabus = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // menuMatiere
+            // 
+            this.menuMatiere.Name = "menuMatiere";
+            this.menuMatiere.Size = new System.Drawing.Size(270, 34);
+            this.menuMatiere.Text = "&Matiere";
+            this.menuMatiere.Visible = false;
+            this.menuMatiere.Click += new System.EventHandler(this.menuMatiere_Click);
+            // 
+            // menuSyllabus
+            // 
+            this.menuSyllabus.Name = "menuSyllabus";
+            this.menuSyllabus.Size = new System.Drawing.Size(270, 34);
+            this.menuSyllabus.Text = "Syllabus";
+            this.menuSyllabus.Visible = false;
+            this.menuSyllabus.Click += new System.EventHandler(this.menuSyllabus_Click);
             // 
             // menuStrip1
             // 
@@ -67,71 +84,70 @@
             // seDeconnecterToolStripMenuItem
             // 
             this.seDeconnecterToolStripMenuItem.Name = "seDeconnecterToolStripMenuItem";
-            this.seDeconnecterToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.seDeconnecterToolStripMenuItem.Size = new System.Drawing.Size(235, 34);
             this.seDeconnecterToolStripMenuItem.Text = "&Se deconnecter";
             this.seDeconnecterToolStripMenuItem.Click += new System.EventHandler(this.seDeconnecterToolStripMenuItem_Click);
             // 
             // quitterToolStripMenuItem
             // 
             this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(235, 34);
             this.quitterToolStripMenuItem.Text = "&Quitter";
             this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
             // 
             // parametreToolStripMenuItem
             // 
             this.parametreToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.matiereToolStripMenuItem,
-            this.classeToolStripMenuItem,
-            this.anneeToolStripMenuItem,
-            this.cahierDeTexteToolStripMenuItem,
-            this.utilisateurToolStripMenuItem,
-            this.syllabusToolStripMenuItem});
+            this.menuMatiere,
+            this.menuClasse,
+            this.MenuAnneeAcademique,
+            this.menuCahierTexte,
+            this.menuSyllabus,
+            this.MenuUtilisateur,
+            this.menuDetailsSyllabus});
             this.parametreToolStripMenuItem.Name = "parametreToolStripMenuItem";
             this.parametreToolStripMenuItem.Size = new System.Drawing.Size(107, 29);
             this.parametreToolStripMenuItem.Text = "&Parametre";
             // 
-            // matiereToolStripMenuItem
+            // menuClasse
             // 
-            this.matiereToolStripMenuItem.Name = "matiereToolStripMenuItem";
-            this.matiereToolStripMenuItem.Size = new System.Drawing.Size(265, 34);
-            this.matiereToolStripMenuItem.Text = "&Matiere";
-            this.matiereToolStripMenuItem.Click += new System.EventHandler(this.matiereToolStripMenuItem_Click);
+            this.menuClasse.Name = "menuClasse";
+            this.menuClasse.Size = new System.Drawing.Size(270, 34);
+            this.menuClasse.Text = "&Classe";
+            this.menuClasse.Visible = false;
+            this.menuClasse.Click += new System.EventHandler(this.menuClasse_Click);
             // 
-            // classeToolStripMenuItem
+            // MenuAnneeAcademique
             // 
-            this.classeToolStripMenuItem.Name = "classeToolStripMenuItem";
-            this.classeToolStripMenuItem.Size = new System.Drawing.Size(265, 34);
-            this.classeToolStripMenuItem.Text = "&Classe";
-            this.classeToolStripMenuItem.Click += new System.EventHandler(this.classeToolStripMenuItem_Click);
+            this.MenuAnneeAcademique.Name = "MenuAnneeAcademique";
+            this.MenuAnneeAcademique.Size = new System.Drawing.Size(270, 34);
+            this.MenuAnneeAcademique.Text = "&Annee academique";
+            this.MenuAnneeAcademique.Visible = false;
+            this.MenuAnneeAcademique.Click += new System.EventHandler(this.menuAnneeAcademique_Click);
             // 
-            // anneeToolStripMenuItem
+            // menuCahierTexte
             // 
-            this.anneeToolStripMenuItem.Name = "anneeToolStripMenuItem";
-            this.anneeToolStripMenuItem.Size = new System.Drawing.Size(265, 34);
-            this.anneeToolStripMenuItem.Text = "&Annee academique";
-            this.anneeToolStripMenuItem.Click += new System.EventHandler(this.anneeToolStripMenuItem_Click);
+            this.menuCahierTexte.Name = "menuCahierTexte";
+            this.menuCahierTexte.Size = new System.Drawing.Size(270, 34);
+            this.menuCahierTexte.Text = "Cahier de Texte";
+            this.menuCahierTexte.Visible = false;
+            this.menuCahierTexte.Click += new System.EventHandler(this.menuCahierTexte_Click);
             // 
-            // cahierDeTexteToolStripMenuItem
+            // MenuUtilisateur
             // 
-            this.cahierDeTexteToolStripMenuItem.Name = "cahierDeTexteToolStripMenuItem";
-            this.cahierDeTexteToolStripMenuItem.Size = new System.Drawing.Size(265, 34);
-            this.cahierDeTexteToolStripMenuItem.Text = "Cahier de Texte";
-            this.cahierDeTexteToolStripMenuItem.Click += new System.EventHandler(this.cahierTexteToolStripMenuItem_Click);
+            this.MenuUtilisateur.Name = "MenuUtilisateur";
+            this.MenuUtilisateur.Size = new System.Drawing.Size(270, 34);
+            this.MenuUtilisateur.Text = "Utilisateur";
+            this.MenuUtilisateur.Visible = false;
+            this.MenuUtilisateur.Click += new System.EventHandler(this.menuUtilisateur_Click);
             // 
-            // utilisateurToolStripMenuItem
+            // menuDetailsSyllabus
             // 
-            this.utilisateurToolStripMenuItem.Name = "utilisateurToolStripMenuItem";
-            this.utilisateurToolStripMenuItem.Size = new System.Drawing.Size(265, 34);
-            this.utilisateurToolStripMenuItem.Text = "Utilisateur";
-            this.utilisateurToolStripMenuItem.Click += new System.EventHandler(this.utilisateurToolStripMenuItem_Click);
-            // 
-            // syllabusToolStripMenuItem
-            // 
-            this.syllabusToolStripMenuItem.Name = "syllabusToolStripMenuItem";
-            this.syllabusToolStripMenuItem.Size = new System.Drawing.Size(265, 34);
-            this.syllabusToolStripMenuItem.Text = "Syllabus";
-            this.syllabusToolStripMenuItem.Click += new System.EventHandler(this.syllabusToolStripMenuItem_Click);
+            this.menuDetailsSyllabus.Name = "menuDetailsSyllabus";
+            this.menuDetailsSyllabus.Size = new System.Drawing.Size(270, 34);
+            this.menuDetailsSyllabus.Text = "Details syllabus";
+            this.menuDetailsSyllabus.Visible = false;
+            this.menuDetailsSyllabus.Click += new System.EventHandler(this.menuDetailsSyllabus_Click);
             // 
             // frmMDI
             // 
@@ -160,11 +176,12 @@
         private System.Windows.Forms.ToolStripMenuItem seDeconnecterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem parametreToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem matiereToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem classeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem anneeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cahierDeTexteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem utilisateurToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem syllabusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuClasse;
+        private System.Windows.Forms.ToolStripMenuItem MenuAnneeAcademique;
+        private System.Windows.Forms.ToolStripMenuItem menuCahierTexte;
+        private System.Windows.Forms.ToolStripMenuItem MenuUtilisateur;
+        private System.Windows.Forms.ToolStripMenuItem menuDetailsSyllabus;
+        private System.Windows.Forms.ToolStripMenuItem menuMatiere;
+        private System.Windows.Forms.ToolStripMenuItem menuSyllabus;
     }
 }
