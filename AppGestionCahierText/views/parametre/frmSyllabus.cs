@@ -1,4 +1,4 @@
-﻿using AppGestionCahierText.views.Models;
+using AppGestionCahierText.views.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,7 +36,8 @@ namespace AppGestionCahierText.views.parametre
                     s.LibelleSyllabus,
                     s.DescriptionSyllabus, 
                     s.VolumeHoraireSyllabus, 
-                    s.NiveauSyllabus 
+                    s.NiveauSyllabus,
+                    VoirDetails = "Voir détails"
                 })
                 .ToList();
         }
@@ -172,6 +173,18 @@ namespace AppGestionCahierText.views.parametre
             DgSyllabus.DataSource = db.Syllabuses
                 .Where(s => s.LibelleSyllabus.Contains(motCle) || s.DescriptionSyllabus.Contains(motCle))
                 .ToList();
+        }
+
+        private void DgSyllabus_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && DgSyllabus.Columns[e.ColumnIndex].Name == "VoirDetails")
+            {
+                int idSyllabus = Convert.ToInt32(DgSyllabus.Rows[e.RowIndex].Cells["IdSyllabus"].Value);
+                
+                frmDetailsSyllabus frmDetails = new frmDetailsSyllabus();
+                frmDetails.SetSyllabusId(idSyllabus);
+                frmDetails.ShowDialog();
+            }
         }
     }
     

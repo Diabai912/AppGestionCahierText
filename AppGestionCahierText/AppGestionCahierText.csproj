@@ -133,6 +133,7 @@
     <Compile Include="views\Models\BdCahierTexteContext.cs" />
     <Compile Include="views\Models\CahierTexte.cs" />
     <Compile Include="views\Models\Classe.cs" />
+    <Compile Include="views\Models\DetailsCahierTexte.cs" />
     <Compile Include="views\Models\DetailsSyllabus.cs" />
     <Compile Include="views\Models\keyAttribute.cs" />
     <Compile Include="views\Models\Matiere.cs" />
@@ -157,6 +158,12 @@
     </Compile>
     <Compile Include="views\parametre\frmClasse.Designer.cs">
       <DependentUpon>frmClasse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\parametre\frmDetailsCahierTexte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\parametre\frmDetailsCahierTexte.Designer.cs">
+      <DependentUpon>frmDetailsCahierTexte.cs</DependentUpon>
     </Compile>
     <Compile Include="views\parametre\frmDetailsSyllabus.cs">
       <SubType>Form</SubType>
@@ -208,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="views\parametre\frmClasse.resx">
       <DependentUpon>frmClasse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\parametre\frmDetailsCahierTexte.resx">
+      <DependentUpon>frmDetailsCahierTexte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\parametre\frmDetailsSyllabus.resx">
       <DependentUpon>frmDetailsSyllabus.cs</DependentUpon>

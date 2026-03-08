@@ -61,7 +61,7 @@ namespace AppGestionCahierText
                 string motDePasseSaisi = txtMotDePasse.Text.Trim();
 
                 // Récupérer l'utilisateur par identifiant
-                var user = db.Utilisateurs.FirstOrDefault(u => u.Identifiant == identifiant);
+                var user = db.Utilisateurs.Where(u => u.Identifiant == txtIdentifiant.Text).FirstOrDefault();
 
                 if (user != null)
                 {

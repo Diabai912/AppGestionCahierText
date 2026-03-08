@@ -50,9 +50,10 @@
             // 
             this.btnRechercher.BackColor = System.Drawing.Color.Purple;
             this.btnRechercher.ForeColor = System.Drawing.Color.White;
-            this.btnRechercher.Location = new System.Drawing.Point(854, 24);
+            this.btnRechercher.Location = new System.Drawing.Point(759, 19);
+            this.btnRechercher.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRechercher.Name = "btnRechercher";
-            this.btnRechercher.Size = new System.Drawing.Size(159, 46);
+            this.btnRechercher.Size = new System.Drawing.Size(141, 37);
             this.btnRechercher.TabIndex = 3;
             this.btnRechercher.Text = "&Rechercher";
             this.btnRechercher.UseVisualStyleBackColor = false;
@@ -60,20 +61,20 @@
             // 
             // txtRecherche
             // 
-            this.txtRecherche.Location = new System.Drawing.Point(425, 24);
+            this.txtRecherche.Location = new System.Drawing.Point(378, 19);
+            this.txtRecherche.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRecherche.Multiline = true;
             this.txtRecherche.Name = "txtRecherche";
-            this.txtRecherche.Size = new System.Drawing.Size(433, 46);
+            this.txtRecherche.Size = new System.Drawing.Size(385, 38);
             this.txtRecherche.TabIndex = 2;
             // 
             // btnSelectionner
             // 
             this.btnSelectionner.BackColor = System.Drawing.Color.Purple;
             this.btnSelectionner.ForeColor = System.Drawing.Color.White;
-            this.btnSelectionner.Location = new System.Drawing.Point(36, 24);
-            this.btnSelectionner.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSelectionner.Location = new System.Drawing.Point(32, 19);
             this.btnSelectionner.Name = "btnSelectionner";
-            this.btnSelectionner.Size = new System.Drawing.Size(240, 60);
+            this.btnSelectionner.Size = new System.Drawing.Size(213, 48);
             this.btnSelectionner.TabIndex = 1;
             this.btnSelectionner.Text = "&Selectionner";
             this.btnSelectionner.UseVisualStyleBackColor = false;
@@ -82,9 +83,9 @@
             // txtAnneeAcademique
             // 
             this.txtAnneeAcademique.AutoSize = true;
-            this.txtAnneeAcademique.Location = new System.Drawing.Point(32, 214);
+            this.txtAnneeAcademique.Location = new System.Drawing.Point(28, 171);
             this.txtAnneeAcademique.Name = "txtAnneeAcademique";
-            this.txtAnneeAcademique.Size = new System.Drawing.Size(89, 20);
+            this.txtAnneeAcademique.Size = new System.Drawing.Size(75, 16);
             this.txtAnneeAcademique.TabIndex = 10;
             this.txtAnneeAcademique.Text = "Description";
             // 
@@ -92,18 +93,17 @@
             // 
             this.txtLibelle.BackColor = System.Drawing.Color.Purple;
             this.txtLibelle.ForeColor = System.Drawing.SystemColors.Window;
-            this.txtLibelle.Location = new System.Drawing.Point(29, 160);
-            this.txtLibelle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtLibelle.Location = new System.Drawing.Point(26, 128);
             this.txtLibelle.Name = "txtLibelle";
-            this.txtLibelle.Size = new System.Drawing.Size(306, 26);
+            this.txtLibelle.Size = new System.Drawing.Size(272, 22);
             this.txtLibelle.TabIndex = 9;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 136);
+            this.label1.Location = new System.Drawing.Point(28, 109);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 20);
+            this.label1.Size = new System.Drawing.Size(47, 16);
             this.label1.TabIndex = 8;
             this.label1.Text = "Libelle";
             // 
@@ -111,22 +111,21 @@
             // 
             this.DgSyllabus.BackgroundColor = System.Drawing.Color.White;
             this.DgSyllabus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgSyllabus.Location = new System.Drawing.Point(411, 86);
-            this.DgSyllabus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.DgSyllabus.Location = new System.Drawing.Point(365, 69);
             this.DgSyllabus.Name = "DgSyllabus";
             this.DgSyllabus.RowHeadersWidth = 62;
             this.DgSyllabus.RowTemplate.Height = 28;
-            this.DgSyllabus.Size = new System.Drawing.Size(749, 557);
+            this.DgSyllabus.Size = new System.Drawing.Size(854, 446);
             this.DgSyllabus.TabIndex = 4;
+            this.DgSyllabus.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgSyllabus_CellClick);
             // 
             // btnSupprimer
             // 
             this.btnSupprimer.BackColor = System.Drawing.Color.Purple;
             this.btnSupprimer.ForeColor = System.Drawing.Color.White;
-            this.btnSupprimer.Location = new System.Drawing.Point(982, 656);
-            this.btnSupprimer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSupprimer.Location = new System.Drawing.Point(1027, 525);
             this.btnSupprimer.Name = "btnSupprimer";
-            this.btnSupprimer.Size = new System.Drawing.Size(178, 53);
+            this.btnSupprimer.Size = new System.Drawing.Size(158, 42);
             this.btnSupprimer.TabIndex = 7;
             this.btnSupprimer.Text = "&Supprimer";
             this.btnSupprimer.UseVisualStyleBackColor = false;
@@ -136,10 +135,9 @@
             // 
             this.btnModifier.BackColor = System.Drawing.Color.Purple;
             this.btnModifier.ForeColor = System.Drawing.Color.White;
-            this.btnModifier.Location = new System.Drawing.Point(712, 656);
-            this.btnModifier.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnModifier.Location = new System.Drawing.Point(708, 525);
             this.btnModifier.Name = "btnModifier";
-            this.btnModifier.Size = new System.Drawing.Size(178, 53);
+            this.btnModifier.Size = new System.Drawing.Size(158, 42);
             this.btnModifier.TabIndex = 6;
             this.btnModifier.Text = "&Modifier";
             this.btnModifier.UseVisualStyleBackColor = false;
@@ -150,10 +148,9 @@
             this.btnAjouter.BackColor = System.Drawing.Color.Purple;
             this.btnAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAjouter.ForeColor = System.Drawing.Color.White;
-            this.btnAjouter.Location = new System.Drawing.Point(411, 656);
-            this.btnAjouter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAjouter.Location = new System.Drawing.Point(378, 524);
             this.btnAjouter.Name = "btnAjouter";
-            this.btnAjouter.Size = new System.Drawing.Size(178, 53);
+            this.btnAjouter.Size = new System.Drawing.Size(158, 42);
             this.btnAjouter.TabIndex = 5;
             this.btnAjouter.Text = "&Ajouter";
             this.btnAjouter.UseVisualStyleBackColor = false;
@@ -163,19 +160,18 @@
             // 
             this.txtDescription.BackColor = System.Drawing.Color.Purple;
             this.txtDescription.ForeColor = System.Drawing.SystemColors.Window;
-            this.txtDescription.Location = new System.Drawing.Point(29, 238);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtDescription.Location = new System.Drawing.Point(26, 190);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(306, 26);
+            this.txtDescription.Size = new System.Drawing.Size(272, 22);
             this.txtDescription.TabIndex = 11;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 292);
+            this.label2.Location = new System.Drawing.Point(28, 234);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(119, 20);
+            this.label2.Size = new System.Drawing.Size(101, 16);
             this.label2.TabIndex = 12;
             this.label2.Text = "Volume Horaire";
             // 
@@ -183,19 +179,18 @@
             // 
             this.txtVolumeHoraire.BackColor = System.Drawing.Color.Purple;
             this.txtVolumeHoraire.ForeColor = System.Drawing.SystemColors.Window;
-            this.txtVolumeHoraire.Location = new System.Drawing.Point(29, 316);
-            this.txtVolumeHoraire.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtVolumeHoraire.Location = new System.Drawing.Point(26, 253);
             this.txtVolumeHoraire.Multiline = true;
             this.txtVolumeHoraire.Name = "txtVolumeHoraire";
-            this.txtVolumeHoraire.Size = new System.Drawing.Size(306, 26);
+            this.txtVolumeHoraire.Size = new System.Drawing.Size(272, 22);
             this.txtVolumeHoraire.TabIndex = 13;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(32, 382);
+            this.label3.Location = new System.Drawing.Point(28, 306);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 20);
+            this.label3.Size = new System.Drawing.Size(50, 16);
             this.label3.TabIndex = 14;
             this.label3.Text = "Niveau";
             // 
@@ -204,16 +199,17 @@
             this.cbbNiveauSyllabus.BackColor = System.Drawing.Color.Purple;
             this.cbbNiveauSyllabus.ForeColor = System.Drawing.SystemColors.Window;
             this.cbbNiveauSyllabus.FormattingEnabled = true;
-            this.cbbNiveauSyllabus.Location = new System.Drawing.Point(29, 405);
+            this.cbbNiveauSyllabus.Location = new System.Drawing.Point(26, 324);
+            this.cbbNiveauSyllabus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbbNiveauSyllabus.Name = "cbbNiveauSyllabus";
-            this.cbbNiveauSyllabus.Size = new System.Drawing.Size(306, 28);
+            this.cbbNiveauSyllabus.Size = new System.Drawing.Size(272, 24);
             this.cbbNiveauSyllabus.TabIndex = 15;
             // 
             // frmSyllabus
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1201, 722);
+            this.ClientSize = new System.Drawing.Size(1231, 578);
             this.ControlBox = false;
             this.Controls.Add(this.cbbNiveauSyllabus);
             this.Controls.Add(this.label3);
@@ -232,6 +228,7 @@
             this.Controls.Add(this.btnAjouter);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmSyllabus";
