@@ -45,6 +45,7 @@
             this.cbbClasse = new System.Windows.Forms.ComboBox();
             this.Responsable = new System.Windows.Forms.Label();
             this.cbbResponsable = new System.Windows.Forms.ComboBox();
+            this.btnPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgCahierTexte)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,10 +53,10 @@
             // 
             this.btnRechercher.BackColor = System.Drawing.Color.Purple;
             this.btnRechercher.ForeColor = System.Drawing.Color.White;
-            this.btnRechercher.Location = new System.Drawing.Point(758, 38);
+            this.btnRechercher.Location = new System.Drawing.Point(853, 48);
             this.btnRechercher.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRechercher.Name = "btnRechercher";
-            this.btnRechercher.Size = new System.Drawing.Size(141, 37);
+            this.btnRechercher.Size = new System.Drawing.Size(159, 46);
             this.btnRechercher.TabIndex = 13;
             this.btnRechercher.Text = "&Rechercher";
             this.btnRechercher.UseVisualStyleBackColor = false;
@@ -63,11 +64,11 @@
             // 
             // txtRecherche
             // 
-            this.txtRecherche.Location = new System.Drawing.Point(377, 38);
+            this.txtRecherche.Location = new System.Drawing.Point(424, 48);
             this.txtRecherche.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRecherche.Multiline = true;
             this.txtRecherche.Name = "txtRecherche";
-            this.txtRecherche.Size = new System.Drawing.Size(385, 38);
+            this.txtRecherche.Size = new System.Drawing.Size(433, 46);
             this.txtRecherche.TabIndex = 14;
             // 
             // cbbAnneeAcademique
@@ -75,18 +76,20 @@
             this.cbbAnneeAcademique.BackColor = System.Drawing.Color.Purple;
             this.cbbAnneeAcademique.ForeColor = System.Drawing.Color.White;
             this.cbbAnneeAcademique.FormattingEnabled = true;
-            this.cbbAnneeAcademique.Location = new System.Drawing.Point(28, 357);
+            this.cbbAnneeAcademique.Location = new System.Drawing.Point(32, 446);
+            this.cbbAnneeAcademique.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbbAnneeAcademique.Name = "cbbAnneeAcademique";
-            this.cbbAnneeAcademique.Size = new System.Drawing.Size(267, 24);
+            this.cbbAnneeAcademique.Size = new System.Drawing.Size(300, 28);
             this.cbbAnneeAcademique.TabIndex = 9;
             // 
             // btnSelectionner
             // 
             this.btnSelectionner.BackColor = System.Drawing.Color.Purple;
             this.btnSelectionner.ForeColor = System.Drawing.Color.White;
-            this.btnSelectionner.Location = new System.Drawing.Point(34, 38);
+            this.btnSelectionner.Location = new System.Drawing.Point(38, 48);
+            this.btnSelectionner.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSelectionner.Name = "btnSelectionner";
-            this.btnSelectionner.Size = new System.Drawing.Size(213, 48);
+            this.btnSelectionner.Size = new System.Drawing.Size(240, 60);
             this.btnSelectionner.TabIndex = 1;
             this.btnSelectionner.Text = "&Selectionner";
             this.btnSelectionner.UseVisualStyleBackColor = false;
@@ -95,18 +98,18 @@
             // txtAnneeAcademique
             // 
             this.txtAnneeAcademique.AutoSize = true;
-            this.txtAnneeAcademique.Location = new System.Drawing.Point(25, 338);
+            this.txtAnneeAcademique.Location = new System.Drawing.Point(28, 422);
             this.txtAnneeAcademique.Name = "txtAnneeAcademique";
-            this.txtAnneeAcademique.Size = new System.Drawing.Size(131, 17);
+            this.txtAnneeAcademique.Size = new System.Drawing.Size(149, 20);
             this.txtAnneeAcademique.TabIndex = 8;
             this.txtAnneeAcademique.Text = "Annee Academique";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 157);
+            this.label1.Location = new System.Drawing.Point(32, 196);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 17);
+            this.label1.Size = new System.Drawing.Size(40, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "Titre";
             // 
@@ -114,11 +117,12 @@
             // 
             this.DgCahierTexte.BackgroundColor = System.Drawing.Color.White;
             this.DgCahierTexte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgCahierTexte.Location = new System.Drawing.Point(364, 92);
+            this.DgCahierTexte.Location = new System.Drawing.Point(410, 115);
+            this.DgCahierTexte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DgCahierTexte.Name = "DgCahierTexte";
             this.DgCahierTexte.RowHeadersWidth = 62;
             this.DgCahierTexte.RowTemplate.Height = 28;
-            this.DgCahierTexte.Size = new System.Drawing.Size(821, 450);
+            this.DgCahierTexte.Size = new System.Drawing.Size(924, 526);
             this.DgCahierTexte.TabIndex = 15;
             this.DgCahierTexte.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgCahierTexte_CellClick);
             // 
@@ -126,9 +130,10 @@
             // 
             this.btnSupprimer.BackColor = System.Drawing.Color.Purple;
             this.btnSupprimer.ForeColor = System.Drawing.Color.White;
-            this.btnSupprimer.Location = new System.Drawing.Point(104, 508);
+            this.btnSupprimer.Location = new System.Drawing.Point(920, 649);
+            this.btnSupprimer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSupprimer.Name = "btnSupprimer";
-            this.btnSupprimer.Size = new System.Drawing.Size(158, 42);
+            this.btnSupprimer.Size = new System.Drawing.Size(178, 52);
             this.btnSupprimer.TabIndex = 12;
             this.btnSupprimer.Text = "&Supprimer";
             this.btnSupprimer.UseVisualStyleBackColor = false;
@@ -138,9 +143,10 @@
             // 
             this.btnModifier.BackColor = System.Drawing.Color.Purple;
             this.btnModifier.ForeColor = System.Drawing.Color.White;
-            this.btnModifier.Location = new System.Drawing.Point(104, 459);
+            this.btnModifier.Location = new System.Drawing.Point(666, 649);
+            this.btnModifier.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnModifier.Name = "btnModifier";
-            this.btnModifier.Size = new System.Drawing.Size(158, 42);
+            this.btnModifier.Size = new System.Drawing.Size(178, 52);
             this.btnModifier.TabIndex = 11;
             this.btnModifier.Text = "&Modifier";
             this.btnModifier.UseVisualStyleBackColor = false;
@@ -151,9 +157,10 @@
             this.btnAjouter.BackColor = System.Drawing.Color.Purple;
             this.btnAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAjouter.ForeColor = System.Drawing.Color.White;
-            this.btnAjouter.Location = new System.Drawing.Point(104, 410);
+            this.btnAjouter.Location = new System.Drawing.Point(410, 647);
+            this.btnAjouter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAjouter.Name = "btnAjouter";
-            this.btnAjouter.Size = new System.Drawing.Size(158, 42);
+            this.btnAjouter.Size = new System.Drawing.Size(178, 52);
             this.btnAjouter.TabIndex = 10;
             this.btnAjouter.Text = "&Ajouter";
             this.btnAjouter.UseVisualStyleBackColor = false;
@@ -163,35 +170,36 @@
             // 
             this.txtDescription.BackColor = System.Drawing.Color.Purple;
             this.txtDescription.ForeColor = System.Drawing.Color.White;
-            this.txtDescription.Location = new System.Drawing.Point(24, 242);
+            this.txtDescription.Location = new System.Drawing.Point(27, 302);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(272, 22);
+            this.txtDescription.Size = new System.Drawing.Size(306, 26);
             this.txtDescription.TabIndex = 5;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 222);
+            this.label2.Location = new System.Drawing.Point(34, 278);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 17);
+            this.label2.Size = new System.Drawing.Size(89, 20);
             this.label2.TabIndex = 4;
             this.label2.Text = "Description";
             // 
             // dateTimePicker
             // 
             this.dateTimePicker.CalendarMonthBackground = System.Drawing.Color.Purple;
-            this.dateTimePicker.Location = new System.Drawing.Point(25, 299);
+            this.dateTimePicker.Location = new System.Drawing.Point(28, 374);
             this.dateTimePicker.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(273, 22);
+            this.dateTimePicker.Size = new System.Drawing.Size(307, 26);
             this.dateTimePicker.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 281);
+            this.label3.Location = new System.Drawing.Point(32, 351);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(113, 17);
+            this.label3.Size = new System.Drawing.Size(127, 20);
             this.label3.TabIndex = 6;
             this.label3.Text = "Date de création";
             // 
@@ -200,18 +208,18 @@
             this.cbbClasse.BackColor = System.Drawing.Color.Purple;
             this.cbbClasse.ForeColor = System.Drawing.SystemColors.Window;
             this.cbbClasse.FormattingEnabled = true;
-            this.cbbClasse.Location = new System.Drawing.Point(28, 183);
+            this.cbbClasse.Location = new System.Drawing.Point(32, 229);
             this.cbbClasse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbbClasse.Name = "cbbClasse";
-            this.cbbClasse.Size = new System.Drawing.Size(268, 24);
+            this.cbbClasse.Size = new System.Drawing.Size(301, 28);
             this.cbbClasse.TabIndex = 17;
             // 
             // Responsable
             // 
             this.Responsable.AutoSize = true;
-            this.Responsable.Location = new System.Drawing.Point(31, 100);
+            this.Responsable.Location = new System.Drawing.Point(35, 125);
             this.Responsable.Name = "Responsable";
-            this.Responsable.Size = new System.Drawing.Size(91, 17);
+            this.Responsable.Size = new System.Drawing.Size(103, 20);
             this.Responsable.TabIndex = 18;
             this.Responsable.Text = "Responsable";
             // 
@@ -220,19 +228,33 @@
             this.cbbResponsable.BackColor = System.Drawing.Color.Purple;
             this.cbbResponsable.ForeColor = System.Drawing.SystemColors.Window;
             this.cbbResponsable.FormattingEnabled = true;
-            this.cbbResponsable.Location = new System.Drawing.Point(28, 121);
+            this.cbbResponsable.Location = new System.Drawing.Point(32, 151);
             this.cbbResponsable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbbResponsable.Name = "cbbResponsable";
-            this.cbbResponsable.Size = new System.Drawing.Size(274, 24);
+            this.cbbResponsable.Size = new System.Drawing.Size(308, 28);
             this.cbbResponsable.TabIndex = 19;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.BackColor = System.Drawing.Color.Purple;
+            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.Location = new System.Drawing.Point(1171, 649);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(163, 49);
+            this.btnPrint.TabIndex = 22;
+            this.btnPrint.Text = "&Imprimer";
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // frmCahierTexte
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1197, 574);
+            this.ClientSize = new System.Drawing.Size(1347, 718);
             this.ControlBox = false;
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.Responsable);
             this.Controls.Add(this.cbbResponsable);
             this.Controls.Add(this.cbbClasse);
@@ -261,6 +283,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgCahierTexte)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
@@ -282,5 +305,6 @@
         private System.Windows.Forms.ComboBox cbbClasse;
         private System.Windows.Forms.Label Responsable;
         private System.Windows.Forms.ComboBox cbbResponsable;
+        private System.Windows.Forms.Button btnPrint;
     }
 }

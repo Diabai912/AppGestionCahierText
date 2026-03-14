@@ -39,6 +39,7 @@
             this.txtLibelle = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.DgAnneeAcademique = new System.Windows.Forms.DataGridView();
+            this.btnPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgAnneeAcademique)).BeginInit();
             this.SuspendLayout();
             // 
@@ -159,12 +160,26 @@
             this.DgAnneeAcademique.TabIndex = 11;
             this.DgAnneeAcademique.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgAnneeAcademique_CellClick);
             // 
+            // btnPrint
+            // 
+            this.btnPrint.BackColor = System.Drawing.Color.Purple;
+            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.Location = new System.Drawing.Point(262, 506);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(163, 45);
+            this.btnPrint.TabIndex = 21;
+            this.btnPrint.Text = "&Imprimer";
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // frmAnneeAcademique
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1205, 707);
             this.ControlBox = false;
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnRechercher);
             this.Controls.Add(this.txtRecherche);
             this.Controls.Add(this.btnSupprimer);
@@ -199,5 +214,6 @@
         private System.Windows.Forms.TextBox txtLibelle;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView DgAnneeAcademique;
+        private System.Windows.Forms.Button btnPrint;
     }
 }

@@ -51,6 +51,7 @@
             this.cbbRole = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtMotDePasse = new System.Windows.Forms.TextBox();
+            this.btnPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgUtilisateurs)).BeginInit();
             this.SuspendLayout();
             // 
@@ -132,7 +133,7 @@
             // 
             this.btnSupprimer.BackColor = System.Drawing.Color.Purple;
             this.btnSupprimer.ForeColor = System.Drawing.Color.White;
-            this.btnSupprimer.Location = new System.Drawing.Point(1003, 648);
+            this.btnSupprimer.Location = new System.Drawing.Point(809, 648);
             this.btnSupprimer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSupprimer.Name = "btnSupprimer";
             this.btnSupprimer.Size = new System.Drawing.Size(178, 53);
@@ -145,7 +146,7 @@
             // 
             this.btnModifier.BackColor = System.Drawing.Color.Purple;
             this.btnModifier.ForeColor = System.Drawing.Color.White;
-            this.btnModifier.Location = new System.Drawing.Point(724, 648);
+            this.btnModifier.Location = new System.Drawing.Point(625, 648);
             this.btnModifier.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnModifier.Name = "btnModifier";
             this.btnModifier.Size = new System.Drawing.Size(178, 53);
@@ -292,12 +293,26 @@
             this.txtMotDePasse.Size = new System.Drawing.Size(306, 26);
             this.txtMotDePasse.TabIndex = 22;
             // 
+            // btnPrint
+            // 
+            this.btnPrint.BackColor = System.Drawing.Color.Purple;
+            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.Location = new System.Drawing.Point(1003, 647);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(178, 54);
+            this.btnPrint.TabIndex = 59;
+            this.btnPrint.Text = "&Imprimer";
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // frmUtilisateur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1193, 714);
             this.ControlBox = false;
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtMotDePasse);
             this.Controls.Add(this.cbbRole);
@@ -358,5 +373,6 @@
         private System.Windows.Forms.ComboBox cbbRole;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtMotDePasse;
+        private System.Windows.Forms.Button btnPrint;
     }
 }

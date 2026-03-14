@@ -18,6 +18,7 @@ namespace AppGestionCahierText.views.Models
         [ForeignKey("IdClasse")]
         public virtual Classe Classe { get; set; }
 
+
         public string DescriptionCahierTexte { get; set; }
 
         public DateTime DateCahierTexte { get; set; } = DateTime.Now;
@@ -31,6 +32,15 @@ namespace AppGestionCahierText.views.Models
         public int IdResponsable { get; set; }  
         [ForeignKey("IdResponsable")]
         public virtual Utilisateur Responsable { get; set; }
+    }
+
+    public class printCahierTexte
+    {
+        public string Responsable { get; set; }
+        public string Titre { get; set; }
+        public string DescriptionCahierTexte { get; set; }
+        public string DateCahierTexte { get; set; }
+        public string AnneeAcademique { get; set; }
     }
 
 }

@@ -22,4 +22,11 @@ namespace AppGestionCahierText.views.Models
         public virtual AnneeAcademique AnneeAcademique { get; set; }
     }
 
+    public class printClasse
+    {
+        public string LibelleClasse { get; set; }
+        public string AnneeAcademique { get; set; }
+        public string Annee { get; set; }
+    }
+
 }

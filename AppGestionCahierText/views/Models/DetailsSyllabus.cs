@@ -25,4 +25,11 @@ namespace AppGestionCahierText.views.Models
         [ForeignKey("IdSyllabus")]             // ✅ même nom exact
         public virtual Syllabus Syllabus { get; set; }
     }
+
+    public class printDetailsSyllabus
+        {
+            public string SeanceSyllabus { get; set; }
+            public string ContenuSyllabus { get; set; }
+            public string Syllabus { get; set; }
+    }
 }

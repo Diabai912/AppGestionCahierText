@@ -43,11 +43,13 @@
             this.txtRecherche = new System.Windows.Forms.TextBox();
             this.cbbProfesseur = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgMatiere)).BeginInit();
             this.SuspendLayout();
             // 
             // DgMatiere
             // 
+            this.DgMatiere.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgMatiere.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgMatiere.Location = new System.Drawing.Point(435, 95);
             this.DgMatiere.Name = "DgMatiere";
@@ -209,12 +211,26 @@
             this.label4.TabIndex = 16;
             this.label4.Text = "Professeur";
             // 
+            // btnPrint
+            // 
+            this.btnPrint.BackColor = System.Drawing.Color.Purple;
+            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.Location = new System.Drawing.Point(247, 614);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(160, 43);
+            this.btnPrint.TabIndex = 59;
+            this.btnPrint.Text = "&Imprimer";
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // frmMatiere
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1174, 730);
             this.ControlBox = false;
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.cbbProfesseur);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnRechercher);
@@ -257,5 +273,6 @@
         private System.Windows.Forms.TextBox txtRecherche;
         private System.Windows.Forms.ComboBox cbbProfesseur;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnPrint;
     }
 }

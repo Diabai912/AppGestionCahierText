@@ -25,4 +25,11 @@ namespace AppGestionCahierText.views.Models
         [Required, MaxLength(2000)]
         public string Description { get; set; }
     }
+
+    public class printDetailsCahierTexte
+    {
+        public string LibelleMatiere { get; set; }
+        public string DateDetail { get; set; }    
+        public string Description { get; set; }
+    }
 }

@@ -41,6 +41,7 @@
             this.txtContenu = new System.Windows.Forms.TextBox();
             this.cbbSyllabus = new System.Windows.Forms.ComboBox();
             this.Syllabus = new System.Windows.Forms.Label();
+            this.btnPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgDetailsSyllabus)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,12 +117,13 @@
             this.DgDetailsSyllabus.RowTemplate.Height = 28;
             this.DgDetailsSyllabus.Size = new System.Drawing.Size(749, 540);
             this.DgDetailsSyllabus.TabIndex = 20;
+            this.DgDetailsSyllabus.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgDetailsSyllabus_CellContentClick);
             // 
             // btnSupprimer
             // 
             this.btnSupprimer.BackColor = System.Drawing.Color.Purple;
             this.btnSupprimer.ForeColor = System.Drawing.Color.White;
-            this.btnSupprimer.Location = new System.Drawing.Point(227, 600);
+            this.btnSupprimer.Location = new System.Drawing.Point(227, 532);
             this.btnSupprimer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSupprimer.Name = "btnSupprimer";
             this.btnSupprimer.Size = new System.Drawing.Size(178, 53);
@@ -134,7 +136,7 @@
             // 
             this.btnModifier.BackColor = System.Drawing.Color.Purple;
             this.btnModifier.ForeColor = System.Drawing.Color.White;
-            this.btnModifier.Location = new System.Drawing.Point(227, 527);
+            this.btnModifier.Location = new System.Drawing.Point(227, 471);
             this.btnModifier.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnModifier.Name = "btnModifier";
             this.btnModifier.Size = new System.Drawing.Size(178, 53);
@@ -148,10 +150,10 @@
             this.btnAjouter.BackColor = System.Drawing.Color.Purple;
             this.btnAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAjouter.ForeColor = System.Drawing.Color.White;
-            this.btnAjouter.Location = new System.Drawing.Point(227, 452);
+            this.btnAjouter.Location = new System.Drawing.Point(227, 404);
             this.btnAjouter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAjouter.Name = "btnAjouter";
-            this.btnAjouter.Size = new System.Drawing.Size(178, 53);
+            this.btnAjouter.Size = new System.Drawing.Size(178, 48);
             this.btnAjouter.TabIndex = 6;
             this.btnAjouter.Text = "&Ajouter";
             this.btnAjouter.UseVisualStyleBackColor = false;
@@ -187,11 +189,25 @@
             this.Syllabus.TabIndex = 11;
             this.Syllabus.Text = "Syllabus";
             // 
+            // btnPrint
+            // 
+            this.btnPrint.BackColor = System.Drawing.Color.Purple;
+            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.Location = new System.Drawing.Point(227, 593);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(178, 49);
+            this.btnPrint.TabIndex = 59;
+            this.btnPrint.Text = "&Imprimer";
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // frmDetailsSyllabus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 734);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.Syllabus);
             this.Controls.Add(this.cbbSyllabus);
             this.Controls.Add(this.txtContenu);
@@ -230,5 +246,6 @@
         private System.Windows.Forms.TextBox txtContenu;
         private System.Windows.Forms.ComboBox cbbSyllabus;
         private System.Windows.Forms.Label Syllabus;
+        private System.Windows.Forms.Button btnPrint;
     }
 }

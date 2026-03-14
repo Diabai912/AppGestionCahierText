@@ -29,5 +29,13 @@ namespace AppGestionCahierText.views.Models
         public int IdProfesseur { get; set; }
         public Utilisateur Professeur { get; set; }
     }
+    public class printMatiere
+    {
+        
+        public string LibelleMatiere { get; set; }
+        public string VolumeHoraireMatiere { get; set; }
+        public string Niveau { get; set; }
+        public string NomProfesseur { get; set; }
+    }
 
 }

@@ -28,4 +28,13 @@ namespace AppGestionCahierText.views.Models
         [Required,MaxLength(10)]
         public string NiveauSyllabus { get; set; }
     }
+
+
+    public class printSyllabus
+    {
+        public string LibelleSyllabus { get; set; }
+        public string DescriptionSyllabus { get; set; }
+        public string VolumeHoraireSyllabus { get; set; }
+        public string NiveauSyllabus { get; set; }
+    }
 }

@@ -18,4 +18,14 @@ namespace AppGestionCahierText.views.Models
         [Required]
         public int ValueAnneeAcademique { get; set; } = DateTime.Now.Year;
     }
+
+
+    public class printAnnee {
+
+        public string LibelleAnneeAcademique { get; set; }
+
+
+        public string ValueAnneeAcademique { get; set; }
+
+    }
 }

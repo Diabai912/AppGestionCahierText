@@ -37,7 +37,24 @@ namespace AppGestionCahierText.views.Models
         public string Salt { get; set; }
 
         [Required, MaxLength(50)]
-        public string Role { get; set; }   
+        public string Role { get; set; }
+        public int IdClasse { get; set; }
+
+        // 🔹 Relation EF (optionnelle)
+        public virtual Classe Classe { get; set; }
+    }
+
+    public class printUtilisateur {
+
+        public string NomUtilisateur { get; set; }
+        public string PrenomUtilisateur { get; set; }
+        public string AdresseUtilisateur { get; set; }
+        public string EmailUtilisateur { get; set; }
+        public string TelephoneUtilisateur { get; set; }
+        public string Identifiant { get; set; }
+        public string Role { get; set; }
+        public string Classe { get; set; }
+
     }
 
 }

@@ -14,6 +14,9 @@ namespace AppGestionCahierText.views.parametre
     public partial class frmCahierTexte : Form
     {
         private BdCahierTexteContext db = new BdCahierTexteContext();
+        private string _role;
+        private int idClasseConnectee;
+
         public frmCahierTexte()
         {
             InitializeComponent();
@@ -21,15 +24,7 @@ namespace AppGestionCahierText.views.parametre
 
         private void CahierTexte_Load(object sender, EventArgs e)
         {
-            // Charger les classes
-            cbbClasse.DataSource = db.Classes.ToList();
-            cbbClasse.DisplayMember = "LibelleClasse";
-            cbbClasse.ValueMember = "ClasseId";
-
-            // Charger les années académiques
-            cbbAnneeAcademique.DataSource = db.AnneeAcademiques.ToList();
-            cbbAnneeAcademique.DisplayMember = "LibelleAnneeAcademique";
-            cbbAnneeAcademique.ValueMember = "AnneeAcademiqueId";
+            AppliquerStyle();
 
             // Charger les responsables
             cbbResponsable.DataSource = db.Utilisateurs
@@ -38,9 +33,12 @@ namespace AppGestionCahierText.views.parametre
             cbbResponsable.DisplayMember = "NomUtilisateur";
             cbbResponsable.ValueMember = "IdUtilisateur";
 
-            // ✅ Charger le DataGridView dès l’ouverture
-            AfficherCahierTexte();
+            // Charger les années académiques
+            cbbAnneeAcademique.DataSource = db.AnneeAcademiques.ToList();
+            cbbAnneeAcademique.DisplayMember = "LibelleAnneeAcademique";
+            cbbAnneeAcademique.ValueMember = "AnneeAcademiqueId";
 
+            // Charger les classes avec option vide
             var classes = db.Classes.ToList();
             classes.Insert(0, new Classe { ClasseId = 0, LibelleClasse = "-- Choisir une classe --" });
             cbbClasse.DataSource = classes;
@@ -48,22 +46,90 @@ namespace AppGestionCahierText.views.parametre
             cbbClasse.ValueMember = "ClasseId";
             cbbClasse.SelectedIndex = 0;
 
+            AfficherCahierTexte();
         }
 
+        // ✅ Style uniforme
+        private void AppliquerStyle()
+        {
+            this.WindowState = FormWindowState.Maximized;
+            this.BackColor = Color.FromArgb(245, 245, 250);
 
+            Color purple = Color.Purple;
+            Color white = Color.White;
+            Font fontBtn = new Font("Segoe UI", 10f);
 
+            foreach (Control ctrl in this.Controls)
+                StyleControle(ctrl, purple, white, fontBtn);
 
+            DgCahierTexte.BackgroundColor = Color.White;
+            DgCahierTexte.BorderStyle = BorderStyle.FixedSingle;
+            DgCahierTexte.ColumnHeadersDefaultCellStyle.BackColor = Color.Purple;
+            DgCahierTexte.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            DgCahierTexte.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10f);
+            DgCahierTexte.EnableHeadersVisualStyles = false;
+            DgCahierTexte.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 240, 255);
+            DgCahierTexte.DefaultCellStyle.SelectionBackColor = Color.FromArgb(83, 74, 183);
+            DgCahierTexte.DefaultCellStyle.SelectionForeColor = Color.White;
+            DgCahierTexte.GridColor = Color.FromArgb(200, 190, 230);
+            DgCahierTexte.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
 
+        private void StyleControle(Control ctrl, Color purple, Color white, Font fontBtn)
+        {
+            if (ctrl is Button btn)
+            {
+                btn.BackColor = purple;
+                btn.ForeColor = white;
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+                btn.Font = fontBtn;
+                btn.Cursor = Cursors.Hand;
+            }
+            else if (ctrl is TextBox txt)
+            {
+                txt.BackColor = Color.FromArgb(240, 235, 255);
+                txt.ForeColor = Color.FromArgb(60, 52, 137);
+                txt.BorderStyle = BorderStyle.FixedSingle;
+                txt.Font = new Font("Segoe UI", 10f);
+            }
+            else if (ctrl is ComboBox cmb)
+            {
+                cmb.BackColor = Color.FromArgb(240, 235, 255);
+                cmb.ForeColor = Color.FromArgb(60, 52, 137);
+                cmb.Font = new Font("Segoe UI", 10f);
+            }
+            else if (ctrl is Label lbl)
+            {
+                lbl.ForeColor = Color.FromArgb(60, 52, 137);
+                lbl.Font = new Font("Segoe UI", 10f);
+                lbl.BackColor = Color.Transparent;
+            }
+            else if (ctrl is DateTimePicker dtp)
+            {
+                dtp.CalendarMonthBackground = Color.FromArgb(240, 235, 255);
+                dtp.CalendarForeColor = Color.FromArgb(60, 52, 137);
+                dtp.Font = new Font("Segoe UI", 10f);
+            }
+
+            foreach (Control child in ctrl.Controls)
+                StyleControle(child, purple, white, fontBtn);
+        }
 
         private void AfficherCahierTexte()
         {
-            DgCahierTexte.DataSource = db.CahierTextes
+            var query = db.CahierTextes.AsQueryable();
+
+            if (_role == "Responsable" && idClasseConnectee > 0)
+                query = query.Where(c => c.IdClasse == idClasseConnectee);
+
+            DgCahierTexte.DataSource = query
                 .Select(c => new
                 {
                     c.IdCahierTexte,
-                    c.IdClasse,   // ✅ ajouté
-                    c.IdAnnee,    // ✅ ajouté
-                    c.IdResponsable, // ✅ ajouté
+                    c.IdClasse,
+                    c.IdAnnee,
+                    c.IdResponsable,
                     Classe = c.Classe.LibelleClasse,
                     c.DescriptionCahierTexte,
                     c.DateCahierTexte,
@@ -73,52 +139,25 @@ namespace AppGestionCahierText.views.parametre
                 })
                 .ToList();
 
-            DgCahierTexte.Columns["IdClasse"].Visible = false; 
-            DgCahierTexte.Columns["IdAnnee"].Visible = false; 
+            DgCahierTexte.Columns["IdClasse"].Visible = false;
+            DgCahierTexte.Columns["IdAnnee"].Visible = false;
             DgCahierTexte.Columns["IdResponsable"].Visible = false;
         }
 
-
-
-
-        private void btnRechercher_Click(object sender, EventArgs e)
+        private void ViderChamps()
         {
-            string critere = txtRecherche.Text.Trim();
-
-            var resultats = db.CahierTextes
-                .Where(c =>
-                    c.Classe.LibelleClasse.Contains(critere) ||
-                    c.DescriptionCahierTexte.Contains(critere) ||
-                    c.DateCahierTexte.ToString().Contains(critere) ||
-                    c.AnneeAcademique.LibelleAnneeAcademique.Contains(critere) ||
-                    c.Responsable.NomUtilisateur.Contains(critere)
-                )
-                .Select(c => new
-                {
-                    c.IdCahierTexte,
-                    Classe = c.Classe.LibelleClasse,
-                    c.DescriptionCahierTexte,
-                    c.DateCahierTexte,
-                    Annee = c.AnneeAcademique.LibelleAnneeAcademique,
-                    Responsable = c.Responsable.NomUtilisateur
-                })
-                .ToList();
-
-            DgCahierTexte.DataSource = resultats;
-
-            if (resultats.Count == 0)
-            {
-                MessageBox.Show("Aucun cahier de texte trouvé.");
-            }
+            txtDescription.Clear();
+            dateTimePicker.Value = DateTime.Now;
+            cbbClasse.SelectedIndex = 0;
+            cbbAnneeAcademique.SelectedIndex = -1;
+            cbbResponsable.SelectedIndex = -1;
         }
-
 
         private void btnAjouter_Click(object sender, EventArgs e)
         {
             int idClasse = (int)cbbClasse.SelectedValue;
             int idResponsable = (int)cbbResponsable.SelectedValue;
 
-            // Vérifier si la classe a déjà un responsable
             bool classeDejaResponsable = db.CahierTextes.Any(c => c.IdClasse == idClasse && c.IdResponsable != null);
             if (classeDejaResponsable)
             {
@@ -126,7 +165,6 @@ namespace AppGestionCahierText.views.parametre
                 return;
             }
 
-            // Vérifier si le responsable est déjà lié à une autre classe
             bool responsableDejaAffecte = db.CahierTextes.Any(c => c.IdResponsable == idResponsable);
             if (responsableDejaAffecte)
             {
@@ -134,8 +172,7 @@ namespace AppGestionCahierText.views.parametre
                 return;
             }
 
-            // Si tout est bon, créer le cahier de texte
-            var cahier = new AppGestionCahierText.views.Models.CahierTexte
+            var cahier = new CahierTexte
             {
                 IdClasse = idClasse,
                 DescriptionCahierTexte = txtDescription.Text,
@@ -151,46 +188,6 @@ namespace AppGestionCahierText.views.parametre
             MessageBox.Show("Cahier de texte ajouté avec succès !");
         }
 
-
-        private void ViderChamps()
-        {
-            txtDescription.Clear();
-            dateTimePicker.Value = DateTime.Now;
-            cbbClasse.SelectedIndex = -1;
-            cbbAnneeAcademique.SelectedIndex = -1;
-            cbbResponsable.SelectedIndex = -1;
-
-
-        }
-
-
-
-
-
-
-        private void btnSelectionner_Click(object sender, EventArgs e)
-        {
-            if (DgCahierTexte.CurrentRow == null) return;
-
-            // Remplir la description
-            txtDescription.Text = DgCahierTexte.CurrentRow.Cells["DescriptionCahierTexte"].Value.ToString();
-
-            // Remplir la date
-            dateTimePicker.Value = Convert.ToDateTime(DgCahierTexte.CurrentRow.Cells["DateCahierTexte"].Value);
-
-            // Sélectionner la classe via Id
-            cbbClasse.SelectedValue = Convert.ToInt32(DgCahierTexte.CurrentRow.Cells["IdClasse"].Value);
-
-            // Sélectionner l’année académique via Id
-            cbbAnneeAcademique.SelectedValue = Convert.ToInt32(DgCahierTexte.CurrentRow.Cells["IdAnnee"].Value);
-
-            // Sélectionner le responsable via Id
-            cbbResponsable.SelectedValue = Convert.ToInt32(DgCahierTexte.CurrentRow.Cells["IdResponsable"].Value);
-        }
-
-
-
-
         private void btnModifier_Click(object sender, EventArgs e)
         {
             if (DgCahierTexte.CurrentRow == null) return;
@@ -203,7 +200,6 @@ namespace AppGestionCahierText.views.parametre
                 int idClasse = (int)cbbClasse.SelectedValue;
                 int idResponsable = (int)cbbResponsable.SelectedValue;
 
-                // Vérifier si la classe a déjà un responsable (autre que celui en cours)
                 bool classeDejaResponsable = db.CahierTextes.Any(c => c.IdClasse == idClasse && c.IdResponsable != null && c.IdCahierTexte != id);
                 if (classeDejaResponsable)
                 {
@@ -211,7 +207,6 @@ namespace AppGestionCahierText.views.parametre
                     return;
                 }
 
-                // Vérifier si le responsable est déjà lié à une autre classe (autre que celle en cours)
                 bool responsableDejaAffecte = db.CahierTextes.Any(c => c.IdResponsable == idResponsable && c.IdCahierTexte != id);
                 if (responsableDejaAffecte)
                 {
@@ -219,7 +214,6 @@ namespace AppGestionCahierText.views.parametre
                     return;
                 }
 
-                // Mise à jour
                 cahier.IdClasse = idClasse;
                 cahier.DescriptionCahierTexte = txtDescription.Text;
                 cahier.DateCahierTexte = dateTimePicker.Value;
@@ -233,8 +227,6 @@ namespace AppGestionCahierText.views.parametre
             }
         }
 
-
-
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
             if (DgCahierTexte.CurrentRow == null) return;
@@ -244,12 +236,57 @@ namespace AppGestionCahierText.views.parametre
 
             if (cahier != null)
             {
-                db.CahierTextes.Remove(cahier);
-                db.SaveChanges();
-                AfficherCahierTexte();
-                ViderChamps();
-                MessageBox.Show("Cahier de texte supprimé avec succès !");
+                var confirmation = MessageBox.Show("Voulez-vous vraiment supprimer ce cahier de texte ?",
+                                                   "Confirmation",
+                                                   MessageBoxButtons.YesNo,
+                                                   MessageBoxIcon.Question);
+                if (confirmation == DialogResult.Yes)
+                {
+                    db.CahierTextes.Remove(cahier);
+                    db.SaveChanges();
+                    AfficherCahierTexte();
+                    ViderChamps();
+                    MessageBox.Show("Cahier de texte supprimé avec succès !");
+                }
             }
+        }
+
+        private void btnSelectionner_Click(object sender, EventArgs e)
+        {
+            if (DgCahierTexte.CurrentRow == null) return;
+
+            txtDescription.Text = DgCahierTexte.CurrentRow.Cells["DescriptionCahierTexte"].Value.ToString();
+            dateTimePicker.Value = Convert.ToDateTime(DgCahierTexte.CurrentRow.Cells["DateCahierTexte"].Value);
+            cbbClasse.SelectedValue = Convert.ToInt32(DgCahierTexte.CurrentRow.Cells["IdClasse"].Value);
+            cbbAnneeAcademique.SelectedValue = Convert.ToInt32(DgCahierTexte.CurrentRow.Cells["IdAnnee"].Value);
+            cbbResponsable.SelectedValue = Convert.ToInt32(DgCahierTexte.CurrentRow.Cells["IdResponsable"].Value);
+        }
+
+        private void btnRechercher_Click(object sender, EventArgs e)
+        {
+            string critere = txtRecherche.Text.Trim();
+
+            var resultats = db.CahierTextes
+                .Where(c =>
+                    c.Classe.LibelleClasse.Contains(critere) ||
+                    c.DescriptionCahierTexte.Contains(critere) ||
+                    c.AnneeAcademique.LibelleAnneeAcademique.Contains(critere) ||
+                    c.Responsable.NomUtilisateur.Contains(critere))
+                .Select(c => new
+                {
+                    c.IdCahierTexte,
+                    Classe = c.Classe.LibelleClasse,
+                    c.DescriptionCahierTexte,
+                    c.DateCahierTexte,
+                    Annee = c.AnneeAcademique.LibelleAnneeAcademique,
+                    Responsable = c.Responsable.NomUtilisateur
+                })
+                .ToList();
+
+            DgCahierTexte.DataSource = resultats;
+
+            if (resultats.Count == 0)
+                MessageBox.Show("Aucun cahier de texte trouvé.");
         }
 
         private void DgCahierTexte_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -257,15 +294,16 @@ namespace AppGestionCahierText.views.parametre
             if (e.RowIndex >= 0 && DgCahierTexte.Columns[e.ColumnIndex].Name == "VoirDetails")
             {
                 int idCahierTexte = Convert.ToInt32(DgCahierTexte.Rows[e.RowIndex].Cells["IdCahierTexte"].Value);
-                
-                frmDetailsCahierTexte frmDetails = new frmDetailsCahierTexte();
-                frmDetails.SetCahierTexteId(idCahierTexte);
-                frmDetails.ShowDialog();
+                frmDetailsCahierTexte frm = new frmDetailsCahierTexte();
+                frm.SetCahierTexteId(idCahierTexte);
+                frm.ShowDialog();
             }
         }
 
-       
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            frmPrintCahier f = new frmPrintCahier();
+            f.ShowDialog();
+        }
     }
 }
-
-

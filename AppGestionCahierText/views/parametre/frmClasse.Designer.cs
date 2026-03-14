@@ -39,6 +39,7 @@
             this.cbbAnneeAcademique = new System.Windows.Forms.ComboBox();
             this.txtRecherche = new System.Windows.Forms.TextBox();
             this.btnRechercher = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgClasse)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,7 +87,7 @@
             // 
             this.DgClasse.BackgroundColor = System.Drawing.Color.White;
             this.DgClasse.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgClasse.Location = new System.Drawing.Point(410, 103);
+            this.DgClasse.Location = new System.Drawing.Point(410, 117);
             this.DgClasse.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DgClasse.Name = "DgClasse";
             this.DgClasse.RowHeadersWidth = 62;
@@ -168,6 +169,20 @@
             this.btnRechercher.UseVisualStyleBackColor = false;
             this.btnRechercher.Click += new System.EventHandler(this.btnRechercher_Click);
             // 
+            // btnPrint
+            // 
+            this.btnPrint.BackColor = System.Drawing.Color.Purple;
+            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.Location = new System.Drawing.Point(211, 567);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(178, 53);
+            this.btnPrint.TabIndex = 12;
+            this.btnPrint.Text = "&Imprimer";
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // frmClasse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
@@ -175,6 +190,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1198, 661);
             this.ControlBox = false;
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnRechercher);
             this.Controls.Add(this.txtRecherche);
             this.Controls.Add(this.cbbAnneeAcademique);
@@ -211,5 +227,6 @@
         private System.Windows.Forms.ComboBox cbbAnneeAcademique;
         private System.Windows.Forms.TextBox txtRecherche;
         private System.Windows.Forms.Button btnRechercher;
+        private System.Windows.Forms.Button btnPrint;
     }
 }

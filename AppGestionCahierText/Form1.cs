@@ -22,30 +22,111 @@ namespace AppGestionCahierText
 
         private void frmConnexion_Load(object sender, EventArgs e)
         {
-            try
-            {
-                using (var db = new BdCahierTexteContext())
-                {
-                    // Test simple : compter les utilisateurs
-                    int count = db.Utilisateurs.Count();
-                    MessageBox.Show($"Connexion réussie ! Utilisateurs trouvés : {count}");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur de connexion : " + ex.Message);
-            }
+            AppliquerStyle();
         }
 
-
-        private void label1_Click(object sender, EventArgs e)
+        private void AppliquerStyle()
         {
+            // ✅ Formulaire centré, taille fixe
+            this.BackColor = Color.FromArgb(245, 245, 250);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Size = new Size(420, 500);
+            this.Text = "Gestion Cahier de Texte";
 
-        }
+            // ✅ Vider tous les contrôles existants
+            this.Controls.Clear();
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
+            // ✅ Bandeau violet en haut
+            Panel banner = new Panel();
+            banner.BackColor = Color.Purple;
+            banner.Size = new Size(420, 120);
+            banner.Location = new Point(0, 0);
 
+            Label lblAppName = new Label();
+            lblAppName.Text = "Gestion Cahier";
+            lblAppName.ForeColor = Color.White;
+            lblAppName.Font = new Font("Segoe UI", 18f, FontStyle.Regular);
+            lblAppName.AutoSize = true;
+            lblAppName.Location = new Point(20, 20);
+
+            Label lblSous = new Label();
+            lblSous.Text = "de Texte";
+            lblSous.ForeColor = Color.FromArgb(206, 203, 246);
+            lblSous.Font = new Font("Segoe UI", 12f);
+            lblSous.AutoSize = true;
+            lblSous.Location = new Point(22, 60);
+
+            banner.Controls.Add(lblAppName);
+            banner.Controls.Add(lblSous);
+            this.Controls.Add(banner);
+
+            // ✅ Label Identifiant
+            Label lblIdentifiant = new Label();
+            lblIdentifiant.Text = "Identifiant";
+            lblIdentifiant.ForeColor = Color.FromArgb(60, 52, 137);
+            lblIdentifiant.Font = new Font("Segoe UI", 10f);
+            lblIdentifiant.AutoSize = true;
+            lblIdentifiant.Location = new Point(40, 150);
+            this.Controls.Add(lblIdentifiant);
+
+            // ✅ TextBox Identifiant
+            txtIdentifiant.Location = new Point(40, 175);
+            txtIdentifiant.Size = new Size(335, 35);
+            txtIdentifiant.BackColor = Color.FromArgb(240, 235, 255);
+            txtIdentifiant.ForeColor = Color.FromArgb(60, 52, 137);
+            txtIdentifiant.BorderStyle = BorderStyle.FixedSingle;
+            txtIdentifiant.Font = new Font("Segoe UI", 11f);
+            this.Controls.Add(txtIdentifiant);
+
+            // ✅ Label Mot de passe
+            Label lblMotDePasse = new Label();
+            lblMotDePasse.Text = "Mot de passe";
+            lblMotDePasse.ForeColor = Color.FromArgb(60, 52, 137);
+            lblMotDePasse.Font = new Font("Segoe UI", 10f);
+            lblMotDePasse.AutoSize = true;
+            lblMotDePasse.Location = new Point(40, 230);
+            this.Controls.Add(lblMotDePasse);
+
+            // ✅ TextBox Mot de passe
+            txtMotDePasse.Location = new Point(40, 255);
+            txtMotDePasse.Size = new Size(335, 35);
+            txtMotDePasse.BackColor = Color.FromArgb(240, 235, 255);
+            txtMotDePasse.ForeColor = Color.FromArgb(60, 52, 137);
+            txtMotDePasse.BorderStyle = BorderStyle.FixedSingle;
+            txtMotDePasse.Font = new Font("Segoe UI", 11f);
+            txtMotDePasse.PasswordChar = '●';
+            this.Controls.Add(txtMotDePasse);
+
+            // ✅ Bouton Se connecter
+            btnSeConnecter.Text = "Se connecter";
+            btnSeConnecter.Location = new Point(40, 330);
+            btnSeConnecter.Size = new Size(335, 45);
+            btnSeConnecter.BackColor = Color.Purple;
+            btnSeConnecter.ForeColor = Color.White;
+            btnSeConnecter.FlatStyle = FlatStyle.Flat;
+            btnSeConnecter.FlatAppearance.BorderSize = 0;
+            btnSeConnecter.Font = new Font("Segoe UI", 11f);
+            btnSeConnecter.Cursor = Cursors.Hand;
+            this.Controls.Add(btnSeConnecter);
+
+            // ✅ Bouton Quitter
+            btnQuitter.Text = "Quitter";
+            btnQuitter.Location = new Point(40, 390);
+            btnQuitter.Size = new Size(335, 40);
+            btnQuitter.BackColor = Color.FromArgb(240, 235, 255);
+            btnQuitter.ForeColor = Color.FromArgb(60, 52, 137);
+            btnQuitter.FlatStyle = FlatStyle.Flat;
+            btnQuitter.FlatAppearance.BorderSize = 1;
+            btnQuitter.FlatAppearance.BorderColor = Color.Purple;
+            btnQuitter.Font = new Font("Segoe UI", 10f);
+            btnQuitter.Cursor = Cursors.Hand;
+            this.Controls.Add(btnQuitter);
+
+            // ✅ Remettre les événements
+            btnSeConnecter.Click += btnSeConnecter_Click;
+            btnQuitter.Click += btnQuitter_Click;
         }
 
         private void btnQuitter_Click(object sender, EventArgs e)
@@ -60,37 +141,35 @@ namespace AppGestionCahierText
                 string identifiant = txtIdentifiant.Text.Trim();
                 string motDePasseSaisi = txtMotDePasse.Text.Trim();
 
-                // Récupérer l'utilisateur par identifiant
-                var user = db.Utilisateurs.Where(u => u.Identifiant == txtIdentifiant.Text).FirstOrDefault();
+                var user = db.Utilisateurs
+                    .Where(u => u.Identifiant == identifiant)
+                    .FirstOrDefault();
 
                 if (user != null)
                 {
-                    // Recalculer le hash avec le mot de passe saisi + le sel stocké
                     string hashTest = Crypto.HashWithSalt(motDePasseSaisi, user.Salt);
-
                     if (hashTest == user.PasswordHash)
                     {
-                        // Connexion réussie → ouvrir frmMDI avec le rôle
-                        frmMDI mdi = new frmMDI(user.Role); // on passe le rôle au constructeur
+                        frmMDI mdi = new frmMDI(user.Role, user.IdClasse);
                         mdi.Show();
                         this.Hide();
                     }
                     else
                     {
-                        MessageBox.Show("Mot de passe incorrect !");
+                        MessageBox.Show("Mot de passe incorrect !", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtMotDePasse.Clear();
+                        txtMotDePasse.Focus();
                     }
-
-
                 }
                 else
                 {
-                    MessageBox.Show("Utilisateur introuvable !");
+                    MessageBox.Show("Utilisateur introuvable !", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtIdentifiant.Focus();
                 }
             }
         }
 
-
-
+        private void label1_Click(object sender, EventArgs e) { }
+        private void textBox1_TextChanged(object sender, EventArgs e) { }
     }
-
 }

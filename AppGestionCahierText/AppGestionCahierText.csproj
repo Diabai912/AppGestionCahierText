@@ -60,6 +60,24 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=9.6.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.9.6.0\lib\net48\MySql.Data.dll</HintPath>
     </Reference>
@@ -125,10 +143,16 @@
     <Compile Include="Migrations\202603021713341_InitialCreate.Designer.cs">
       <DependentUpon>202603021713341_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202603131251534_UpdateCahierTexte.cs" />
+    <Compile Include="Migrations\202603131251534_UpdateCahierTexte.Designer.cs">
+      <DependentUpon>202603131251534_UpdateCahierTexte.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\Crypto.cs" />
+    <Compile Include="Shared\Logger.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="views\Models\AnneeAcademique.cs" />
     <Compile Include="views\Models\BdCahierTexteContext.cs" />
     <Compile Include="views\Models\CahierTexte.cs" />
@@ -177,6 +201,54 @@
     <Compile Include="views\parametre\frmMatiere.Designer.cs">
       <DependentUpon>frmMatiere.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\parametre\frmPrintAnnee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\parametre\frmPrintAnnee.Designer.cs">
+      <DependentUpon>frmPrintAnnee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\parametre\frmPrintCahier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\parametre\frmPrintCahier.Designer.cs">
+      <DependentUpon>frmPrintCahier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\parametre\frmPrintClasse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\parametre\frmPrintClasse.Designer.cs">
+      <DependentUpon>frmPrintClasse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\parametre\frmPrintDetailsCahier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\parametre\frmPrintDetailsCahier.Designer.cs">
+      <DependentUpon>frmPrintDetailsCahier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\parametre\frmPrintDetailsSyllabus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\parametre\frmPrintDetailsSyllabus.Designer.cs">
+      <DependentUpon>frmPrintDetailsSyllabus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\parametre\frmPrintMatiere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\parametre\frmPrintMatiere.Designer.cs">
+      <DependentUpon>frmPrintMatiere.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\parametre\frmPrintSyllabus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\parametre\frmPrintSyllabus.Designer.cs">
+      <DependentUpon>frmPrintSyllabus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\parametre\frmPrintUtilisateur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\parametre\frmPrintUtilisateur.Designer.cs">
+      <DependentUpon>frmPrintUtilisateur.cs</DependentUpon>
+    </Compile>
     <Compile Include="views\parametre\frmSyllabus.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +270,9 @@
     <EmbeddedResource Include="Migrations\202603021713341_InitialCreate.resx">
       <DependentUpon>202603021713341_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202603131251534_UpdateCahierTexte.resx">
+      <DependentUpon>202603131251534_UpdateCahierTexte.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -207,6 +282,30 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Report\rptClasse.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptDetailsCahierTexte.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptListeAnnee.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptListeCahierTexte.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptListeDetailsSyllabus.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptListeMatier.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptListeSyllabus.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptListeUtilisateur.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="views\parametre\frmAnneeAcademique.resx">
       <DependentUpon>frmAnneeAcademique.cs</DependentUpon>
     </EmbeddedResource>
@@ -225,6 +324,30 @@
     <EmbeddedResource Include="views\parametre\frmMatiere.resx">
       <DependentUpon>frmMatiere.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="views\parametre\frmPrintAnnee.resx">
+      <DependentUpon>frmPrintAnnee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\parametre\frmPrintCahier.resx">
+      <DependentUpon>frmPrintCahier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\parametre\frmPrintClasse.resx">
+      <DependentUpon>frmPrintClasse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\parametre\frmPrintDetailsCahier.resx">
+      <DependentUpon>frmPrintDetailsCahier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\parametre\frmPrintDetailsSyllabus.resx">
+      <DependentUpon>frmPrintDetailsSyllabus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\parametre\frmPrintMatiere.resx">
+      <DependentUpon>frmPrintMatiere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\parametre\frmPrintSyllabus.resx">
+      <DependentUpon>frmPrintSyllabus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\parametre\frmPrintUtilisateur.resx">
+      <DependentUpon>frmPrintUtilisateur.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="views\parametre\frmSyllabus.resx">
       <DependentUpon>frmSyllabus.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,6 +355,14 @@
       <DependentUpon>frmUtilisateur.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\AppGestionCahierText.views.Models.printAnnee.datasource" />
+    <None Include="Properties\DataSources\AppGestionCahierText.views.Models.printCahierTexte.datasource" />
+    <None Include="Properties\DataSources\AppGestionCahierText.views.Models.printClasse.datasource" />
+    <None Include="Properties\DataSources\AppGestionCahierText.views.Models.printDetailsCahierTexte.datasource" />
+    <None Include="Properties\DataSources\AppGestionCahierText.views.Models.printDetailsSyllabus.datasource" />
+    <None Include="Properties\DataSources\AppGestionCahierText.views.Models.printMatiere.datasource" />
+    <None Include="Properties\DataSources\AppGestionCahierText.views.Models.printSyllabus.datasource" />
+    <None Include="Properties\DataSources\AppGestionCahierText.views.Models.printUtilisateur.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -247,7 +378,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
