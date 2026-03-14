@@ -190,11 +190,27 @@ namespace AppGestionCahierText.views.parametre
 
         private void btnModifier_Click(object sender, EventArgs e)
         {
+            if (cbbClasse.SelectedValue == null || (int)cbbClasse.SelectedValue == 0)
+            {
+                MessageBox.Show("Veuillez choisir une classe !");
+                return;
+            }
+            if (cbbResponsable.SelectedValue == null)
+            {
+                MessageBox.Show("Veuillez choisir un responsable !");
+                return;
+            }
+            if (cbbAnneeAcademique.SelectedValue == null)
+            {
+                MessageBox.Show("Veuillez choisir une année académique !");
+                return;
+            }
             if (DgCahierTexte.CurrentRow == null) return;
 
+            // ✅ Une seule fois
             int id = (int)DgCahierTexte.CurrentRow.Cells["IdCahierTexte"].Value;
-            var cahier = db.CahierTextes.Find(id);
 
+            var cahier = db.CahierTextes.Find(id);
             if (cahier != null)
             {
                 int idClasse = (int)cbbClasse.SelectedValue;

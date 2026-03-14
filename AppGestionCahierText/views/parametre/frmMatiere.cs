@@ -1,11 +1,12 @@
-﻿using AppGestionCahierText.views.Models;
+﻿using AppGestionCahierText.Shared;
+using AppGestionCahierText.views.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
-using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,14 +24,20 @@ namespace AppGestionCahierText.views.parametre
 
         private void frmMatiere_Load(object sender, EventArgs e)
         {
-            AppliquerStyle();
-            AfficherMatiere();
-
-            cbbProfesseur.DataSource = db.Utilisateurs
-                .Where(u => u.Role == "Professeur")
-                .ToList();
-            cbbProfesseur.DisplayMember = "NomUtilisateur";
-            cbbProfesseur.ValueMember = "IdUtilisateur";
+            try
+            {
+                AppliquerStyle();
+                AfficherMatiere();
+                cbbProfesseur.DataSource = db.Utilisateurs
+                    .Where(u => u.Role == "Professeur").ToList();
+                cbbProfesseur.DisplayMember = "NomUtilisateur";
+                cbbProfesseur.ValueMember = "IdUtilisateur";
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteFileError($"Erreur chargement frmMatiere : {ex.Message}");
+                MessageBox.Show("Impossible de charger les données.");
+            }
         }
 
         // ✅ Méthode de style uniforme
@@ -136,40 +143,7 @@ namespace AppGestionCahierText.views.parametre
 
         private void btnAjouter_Click(object sender, EventArgs e)
         {
-            int volume;
-            if (!int.TryParse(txtVolumeHoraire.Text, out volume))
-            {
-                MessageBox.Show("Veuillez saisir un nombre valide pour le volume horaire.");
-                return;
-            }
-
-            var matiere = new Matiere
-            {
-                LibelleMatiere = txtLibelleMatiere.Text,
-                VolumeHoraireMatiere = volume,
-                Niveau = txtNiveau.Text,
-                IdProfesseur = (int)cbbProfesseur.SelectedValue
-            };
-
-            db.Matieres.Add(matiere);
-            db.SaveChanges();
-            AfficherMatiere();
-            ViderChamps();
-            MessageBox.Show("Matière ajoutée avec succès !");
-        }
-
-        private void btnModifier_Click(object sender, EventArgs e)
-        {
-            if (DgMatiere.CurrentRow == null)
-            {
-                MessageBox.Show("Veuillez sélectionner une matière à modifier.");
-                return;
-            }
-
-            int id = (int)DgMatiere.CurrentRow.Cells["IdMatiere"].Value;
-            var matiere = db.Matieres.Find(id);
-
-            if (matiere != null)
+            try 
             {
                 int volume;
                 if (!int.TryParse(txtVolumeHoraire.Text, out volume))
@@ -178,15 +152,64 @@ namespace AppGestionCahierText.views.parametre
                     return;
                 }
 
-                matiere.LibelleMatiere = txtLibelleMatiere.Text;
-                matiere.VolumeHoraireMatiere = volume;
-                matiere.Niveau = txtNiveau.Text;
-                matiere.IdProfesseur = (int)cbbProfesseur.SelectedValue;
+                var matiere = new Matiere
+                {
+                    LibelleMatiere = txtLibelleMatiere.Text,
+                    VolumeHoraireMatiere = volume,
+                    Niveau = txtNiveau.Text,
+                    IdProfesseur = (int)cbbProfesseur.SelectedValue
+                };
 
+                db.Matieres.Add(matiere);
                 db.SaveChanges();
                 AfficherMatiere();
                 ViderChamps();
-                MessageBox.Show("Matière modifiée avec succès !");
+                MessageBox.Show("Matière ajoutée avec succès !");
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteFileError($"Erreur ajout matière : {ex.Message}");
+                MessageBox.Show("Impossible d'ajouter la matière.");
+            }
+        }
+
+        private void btnModifier_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DgMatiere.CurrentRow == null)
+                {
+                    MessageBox.Show("Veuillez sélectionner une matière à modifier.");
+                    return;
+                }
+
+                int id = (int)DgMatiere.CurrentRow.Cells["IdMatiere"].Value;
+                var matiere = db.Matieres.Find(id);
+
+                if (matiere != null)
+                {
+                    int volume;
+                    if (!int.TryParse(txtVolumeHoraire.Text, out volume))
+                    {
+                        MessageBox.Show("Veuillez saisir un nombre valide pour le volume horaire.");
+                        return;
+                    }
+
+                    matiere.LibelleMatiere = txtLibelleMatiere.Text;
+                    matiere.VolumeHoraireMatiere = volume;
+                    matiere.Niveau = txtNiveau.Text;
+                    matiere.IdProfesseur = (int)cbbProfesseur.SelectedValue;
+
+                    db.SaveChanges();
+                    AfficherMatiere();
+                    ViderChamps();
+                    MessageBox.Show("Matière modifiée avec succès !");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteFileError($"Erreur modification matière : {ex.Message}");
+                MessageBox.Show("Impossible de modifier la matière.");
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using AppGestionCahierText.views.Models;
+﻿using AppGestionCahierText.Shared;
+using AppGestionCahierText.views.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,8 +23,15 @@ namespace AppGestionCahierText.views.parametre
 
         private void frmAnneeAcademique_Load(object sender, EventArgs e)
         {
-            AppliquerStyle();
-            AfficherAnneeAcademique();
+            try { 
+                AppliquerStyle();
+                AfficherAnneeAcademique();
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteFileError($"Erreur chargement frmAnneeAcademique : {ex.Message}");
+                MessageBox.Show("Impossible de charger les données.");
+            }
         }
 
         // ✅ Style uniforme
@@ -50,6 +58,9 @@ namespace AppGestionCahierText.views.parametre
             DgAnneeAcademique.DefaultCellStyle.SelectionForeColor = Color.White;
             DgAnneeAcademique.GridColor = Color.FromArgb(200, 190, 230);
             DgAnneeAcademique.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            btnSupprimer.Click -= btnSupprimer_Click;
+            btnSupprimer.Click += btnSupprimer_Click;
         }
 
         private void StyleControle(Control ctrl, Color purple, Color white, Font fontBtn)
@@ -116,41 +127,13 @@ namespace AppGestionCahierText.views.parametre
 
         private void btnAjouter_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtLibelle.Text))
-            {
-                MessageBox.Show("Veuillez saisir un libellé.");
-                return;
-            }
+            try {
+                if (string.IsNullOrWhiteSpace(txtLibelle.Text))
+                {
+                    MessageBox.Show("Veuillez saisir un libellé.");
+                    return;
+                }
 
-            int value;
-            if (!int.TryParse(txtValue.Text, out value))
-            {
-                MessageBox.Show("Veuillez saisir une valeur numérique valide.");
-                return;
-            }
-
-            var annee = new AnneeAcademique
-            {
-                LibelleAnneeAcademique = txtLibelle.Text,
-                ValueAnneeAcademique = value
-            };
-
-            db.AnneeAcademiques.Add(annee);
-            db.SaveChanges();
-            AfficherAnneeAcademique();
-            ViderChamps();
-            MessageBox.Show("Année académique ajoutée avec succès !");
-        }
-
-        private void btnModifier_Click(object sender, EventArgs e)
-        {
-            if (DgAnneeAcademique.CurrentRow == null) return;
-
-            int id = (int)DgAnneeAcademique.CurrentRow.Cells["AnneeAcademiqueId"].Value;
-            var annee = db.AnneeAcademiques.Find(id);
-
-            if (annee != null)
-            {
                 int value;
                 if (!int.TryParse(txtValue.Text, out value))
                 {
@@ -158,29 +141,101 @@ namespace AppGestionCahierText.views.parametre
                     return;
                 }
 
-                annee.LibelleAnneeAcademique = txtLibelle.Text;
-                annee.ValueAnneeAcademique = value;
+                var annee = new AnneeAcademique
+                {
+                    LibelleAnneeAcademique = txtLibelle.Text,
+                    ValueAnneeAcademique = value
+                };
 
+                db.AnneeAcademiques.Add(annee);
                 db.SaveChanges();
                 AfficherAnneeAcademique();
                 ViderChamps();
-                MessageBox.Show("Année académique modifiée avec succès !");
+                MessageBox.Show("Année académique ajoutée avec succès !");
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteFileError($"Erreur ajout année académique: {ex.Message}");
+                MessageBox.Show("Impossible d'ajouter l'année académique.");
             }
         }
 
+        private void btnModifier_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DgAnneeAcademique.CurrentRow == null) return;
+
+                int id = (int)DgAnneeAcademique.CurrentRow.Cells["AnneeAcademiqueId"].Value;
+                var annee = db.AnneeAcademiques.Find(id);
+
+                if (annee != null)
+                {
+                    int value;
+                    if (!int.TryParse(txtValue.Text, out value))
+                    {
+                        MessageBox.Show("Veuillez saisir une valeur numérique valide.");
+                        return;
+                    }
+
+                    annee.LibelleAnneeAcademique = txtLibelle.Text;
+                    annee.ValueAnneeAcademique = value;
+
+                    db.SaveChanges();
+                    AfficherAnneeAcademique();
+                    ViderChamps();
+                    MessageBox.Show("Année académique modifiée avec succès !");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteFileError($"Erreur modification l'année académique  : {ex.Message}");
+                MessageBox.Show("Impossible de modifier l'année académique.");
+            }
+        }
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
-            if (DgAnneeAcademique.CurrentRow == null) return;
-
-            int id = (int)DgAnneeAcademique.CurrentRow.Cells["AnneeAcademiqueId"].Value;
-            var annee = db.AnneeAcademiques.Find(id);
-
-            if (annee != null)
+            int id = 0;
+            try
             {
-                var confirmation = MessageBox.Show("Voulez-vous vraiment supprimer cette année académique ?",
-                                                   "Confirmation",
-                                                   MessageBoxButtons.YesNo,
-                                                   MessageBoxIcon.Question);
+                if (DgAnneeAcademique.CurrentRow == null)
+                {
+                    MessageBox.Show("Veuillez sélectionner une ligne avant de supprimer.");
+                    return;
+                }
+
+                var row = DgAnneeAcademique.CurrentRow;
+                id = Convert.ToInt32(row.Cells[0].Value);
+
+                var annee = db.AnneeAcademiques.Find(id);
+                if (annee == null)
+                {
+                    MessageBox.Show("Année académique introuvable !");
+                    return;
+                }
+
+                // ✅ Vérifier si utilisée dans Classe
+                bool utiliseeClasse = db.Classes.Any(c => c.AnneeAcademiqueId == id);
+                if (utiliseeClasse)
+                {
+                    MessageBox.Show("Impossible de supprimer : cette année est utilisée par une ou plusieurs classes !");
+                    return;
+                }
+
+                // ✅ Vérifier si utilisée dans CahierTexte
+                bool utiliséeCahier = db.CahierTextes.Any(c => c.IdAnnee == id);
+                if (utiliséeCahier)
+                {
+                    MessageBox.Show("Impossible de supprimer : cette année est utilisée par un cahier de texte !");
+                    return;
+                }
+
+                var confirmation = MessageBox.Show(
+                    "Voulez-vous vraiment supprimer cette année académique ?",
+                    "Confirmation",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
                 if (confirmation == DialogResult.Yes)
                 {
                     db.AnneeAcademiques.Remove(annee);
@@ -190,7 +245,13 @@ namespace AppGestionCahierText.views.parametre
                     MessageBox.Show("Année académique supprimée avec succès !");
                 }
             }
+            catch (Exception ex)
+            {
+                Logger.WriteFileError($"Erreur suppression année académique ID {id} : {ex.Message}");
+                MessageBox.Show("Impossible de supprimer l'année académique.");
+            }
         }
+
 
         private void btnRechercher_Click(object sender, EventArgs e)
         {

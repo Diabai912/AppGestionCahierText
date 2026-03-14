@@ -1,22 +1,53 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace AppGestionCahierText.Shared
 {
-    internal static class Logger
+    public static class Logger
     {
-        private static readonly string logFile = "app.log";
+        // ✅ Chemin du fichier log dans le dossier de l'application
+        private static string cheminLog = Path.Combine(
+            AppDomain.CurrentDomain.BaseDirectory, "Error", "erreur.txt");
 
-        public static void Log(string message)
+        // ✅ Écrire dans un fichier texte
+        public static void WriteFileError(string message)
         {
-            string entry = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}";
-            File.AppendAllText(logFile, entry + Environment.NewLine);
+            try
+            {
+                // Créer le dossier Error s'il n'existe pas
+                string dossier = Path.GetDirectoryName(cheminLog);
+                if (!Directory.Exists(dossier))
+                    Directory.CreateDirectory(dossier);
+
+                using (StreamWriter writeFile = new StreamWriter(cheminLog, true))
+                {
+                    writeFile.WriteLine("" + DateTime.Now);
+                    writeFile.WriteLine(message);
+                    writeFile.WriteLine("----------------------------------------");
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteLogSystem(ex.ToString(), "WriteFileError");
+            }
         }
 
-        public static void LogError(Exception ex)
+        // ✅ Écrire dans le journal Windows (Event Viewer)
+        public static void WriteLogSystem(string erreur, string libelle)
         {
-            string entry = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - ERROR: {ex.Message}";
-            File.AppendAllText(logFile, entry + Environment.NewLine);
+            try
+            {
+                using (EventLog eventLog = new EventLog("Application"))
+                {
+                    eventLog.Source = "GestionCahierTexte";
+                    eventLog.WriteEntry(
+                        string.Format("date: {0}, libelle: {1}, description: {2}",
+                            DateTime.Now, libelle, erreur),
+                        EventLogEntryType.Information, 101, 1);
+                }
+            }
+            catch { }
         }
     }
 }

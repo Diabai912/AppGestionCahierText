@@ -208,15 +208,18 @@ namespace AppGestionCahierText.views.parametre
         {
             if (DgUtilisateurs.CurrentRow == null) return;
 
-            idUtilisateur = Convert.ToInt32(DgUtilisateurs.CurrentRow.Cells[0].Value);
-            txtNom.Text = DgUtilisateurs.CurrentRow.Cells["NomUtilisateur"].Value.ToString();
-            txtPrenom.Text = DgUtilisateurs.CurrentRow.Cells["PrenomUtilisateur"].Value.ToString();
-            txtAdresse.Text = DgUtilisateurs.CurrentRow.Cells["AdresseUtilisateur"].Value.ToString();
-            txtEmail.Text = DgUtilisateurs.CurrentRow.Cells["EmailUtilisateur"].Value.ToString();
-            txtTelephone.Text = DgUtilisateurs.CurrentRow.Cells["TelephoneUtilisateur"].Value.ToString();
-            txtIdentifiant.Text = DgUtilisateurs.CurrentRow.Cells["Identifiant"].Value.ToString();
-            cbbRole.SelectedItem = DgUtilisateurs.CurrentRow.Cells["Role"].Value.ToString();
+            idUtilisateur = Convert.ToInt32(DgUtilisateurs.CurrentRow.Cells["IdUtilisateur"].Value);
+
+            txtNom.Text = DgUtilisateurs.CurrentRow.Cells["NomUtilisateur"].Value?.ToString();
+            txtPrenom.Text = DgUtilisateurs.CurrentRow.Cells["PrenomUtilisateur"].Value?.ToString();
+            txtAdresse.Text = DgUtilisateurs.CurrentRow.Cells["AdresseUtilisateur"].Value?.ToString();
+            txtEmail.Text = DgUtilisateurs.CurrentRow.Cells["EmailUtilisateur"].Value?.ToString();
+            txtTelephone.Text = DgUtilisateurs.CurrentRow.Cells["TelephoneUtilisateur"].Value?.ToString();
+            txtIdentifiant.Text = DgUtilisateurs.CurrentRow.Cells["Identifiant"].Value?.ToString();
+            // ⚠️ MotDePasse n’est pas dans ton Select → tu ne peux pas le récupérer directement
+            cbbRole.Text = DgUtilisateurs.CurrentRow.Cells["Role"].Value?.ToString();
         }
+
 
         private void btnRechercher_Click(object sender, EventArgs e)
         {
